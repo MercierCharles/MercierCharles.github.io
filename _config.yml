@@ -20,6 +20,8 @@ author: Some Person
 ###############################################
 
 navbar-links:
+  Research: "/"
+  Posts: "/posts/"
   About Me: "aboutme"
   Resources:
     - Beautiful Jekyll: "https://beautifuljekyll.com"
