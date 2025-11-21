@@ -8,293 +8,161 @@ ext-js:
   - href: "https://cdn.plot.ly/plotly-2.27.0.min.js"
 ---
 
-## Overview
+<div class="research-outline" markdown="1">
 
-This page presents my ongoing data analysis research, where I explore various datasets to uncover meaningful patterns, relationships, and insights. Through statistical analysis and visualization, I aim to understand complex phenomena and communicate findings effectively.
+# Data Story Outline: *A Moderator Under Siege*
 
-## Research Methodology
+## Setup: A mod wakes up to chaos
 
-My approach combines rigorous statistical methods with intuitive visualizations to make data-driven insights accessible. I employ various techniques including time series analysis, distribution modeling, correlation studies, and comparative assessments.
-
-## Key Findings
-
-### Time Series Analysis
-
-Understanding temporal patterns is crucial for identifying trends and forecasting future behavior. The following interactive visualization demonstrates a time series analysis of our dataset. You can zoom, pan, and hover over data points to explore the details:
-
-<div id="time-series-plot" style="width:100%; height:500px;"></div>
-
-*Figure 1: Interactive time series analysis showing data trends over time. The red dashed line represents the underlying trend, while the blue line shows the actual observed data with natural variation. Use the toolbar to zoom, pan, or download the plot.*
-
-### Distribution Analysis
-
-Examining the distribution of data points helps us understand the underlying structure and identify outliers or anomalies. Hover over the bars to see exact frequencies:
-
-<div id="distribution-plot" style="width:100%; height:500px;"></div>
-
-*Figure 2: Interactive histogram showing the frequency distribution of values. The red dashed line indicates the mean value, providing a central tendency measure.*
-
-### Correlation Analysis
-
-Understanding relationships between variables is essential for building predictive models and identifying key factors. Hover over the heatmap cells to see exact correlation values:
-
-<div id="correlation-plot" style="width:100%; height:500px;"></div>
-
-*Figure 3: Interactive correlation matrix heatmap showing the strength and direction of relationships between different variables. Values range from -1 (perfect negative correlation) to +1 (perfect positive correlation).*
-
-### Comparative Analysis
-
-Comparing different groups or categories reveals important differences and similarities. Click on the legend to toggle groups on and off:
-
-<div id="comparative-plot" style="width:100%; height:500px;"></div>
-
-*Figure 4: Interactive comparative bar chart showing values across different categories for two distinct groups. This visualization helps identify patterns and differences between groups.*
-
-## Conclusions
-
-Through comprehensive data analysis and visualization, we can extract meaningful insights that inform decision-making processes. The combination of statistical rigor and clear visual communication enables both technical and non-technical audiences to understand complex data relationships.
-
-## Future Work
-
-Future research directions include:
-- Advanced machine learning models for prediction
-- Multivariate analysis techniques
-- Real-time data streaming analysis
-- Integration of additional data sources
-
-## Community Insights Gallery
-
-Beyond the summary charts above, the research stack produces a suite of ready-to-share dashboards exported to standalone Plotly HTML files under `assets/data/website_figures`. The highlights below are embedded directly so you can interact with the same figures that appear in reports and presentations.
-
-<div class="figure-grid">
-  <div class="figure-card">
-    <h4>Overall Tone Trajectory</h4>
-    <p class="figure-caption">Weekly sentiment pulse combining VADER and LIWC affective markers.</p>
-    <iframe
-      title="Overall tone trajectory"
-      loading="lazy"
-      src="{{ '/assets/data/website_figures/overall_tone.html' | relative_url }}"
-      style="width:100%; min-height:520px; border:1px solid #e5e5e5; border-radius:8px; background:#fff;">
-    </iframe>
-  </div>
-  <div class="figure-card">
-    <h4>Community Stats Overview</h4>
-    <p class="figure-caption">Top-level KPIs for volume, engagement, and moderation signals.</p>
-    <iframe
-      title="Community stats overview"
-      loading="lazy"
-      src="{{ '/assets/data/website_figures/community_stats_overview.html' | relative_url }}"
-      style="width:100%; min-height:520px; border:1px solid #e5e5e5; border-radius:8px; background:#fff;">
-    </iframe>
-  </div>
-  <div class="figure-card">
-    <h4>Hostility vs Activity</h4>
-    <p class="figure-caption">Scatter plot contrasting toxic rates with posting intensity for each cluster.</p>
-    <iframe
-      title="Hostility vs activity"
-      loading="lazy"
-      src="{{ '/assets/data/website_figures/hostility_vs_activity.html' | relative_url }}"
-      style="width:100%; min-height:520px; border:1px solid #e5e5e5; border-radius:8px; background:#fff;">
-    </iframe>
-  </div>
-  <div class="figure-card">
-    <h4>Community Sizes Over Time</h4>
-    <p class="figure-caption">Stacked area timeline that reveals how emerging cohorts grow or decay.</p>
-    <iframe
-      title="Community sizes over time"
-      loading="lazy"
-      src="{{ '/assets/data/website_figures/community_sizes_over_time.html' | relative_url }}"
-      style="width:100%; min-height:520px; border:1px solid #e5e5e5; border-radius:8px; background:#fff;">
-    </iframe>
-  </div>
-  <div class="figure-card">
-    <h4>Cluster Emotional Profiles</h4>
-    <p class="figure-caption">Heatmap comparing normalized emotional vectors across discovered clusters.</p>
-    <iframe
-      title="Cluster emotional profiles heatmap"
-      loading="lazy"
-      src="{{ '/assets/data/website_figures/cluster_emotional_profiles_heatmap.html' | relative_url }}"
-      style="width:100%; min-height:520px; border:1px solid #e5e5e5; border-radius:8px; background:#fff;">
-    </iframe>
-  </div>
-  <div class="figure-card">
-    <h4>Subreddit Embeddings Map</h4>
-    <p class="figure-caption">2D projection of subreddit embeddings colored by inferred community.</p>
-    <iframe
-      title="Subreddit embeddings map"
-      loading="lazy"
-      src="{{ '/assets/data/website_figures/subreddit_embeddings_map.html' | relative_url }}"
-      style="width:100%; min-height:520px; border:1px solid #e5e5e5; border-radius:8px; background:#fff;">
-    </iframe>
-  </div>
-  <div class="figure-card">
-    <h4>Tone Over Time</h4>
-    <p class="figure-caption">Temporal evolution of sentiment and emotional markers across the dataset.</p>
-    <iframe
-      title="Tone over time"
-      loading="lazy"
-      src="{{ '/assets/data/website_figures/tone_over_time.html' | relative_url }}"
-      style="width:100%; min-height:520px; border:1px solid #e5e5e5; border-radius:8px; background:#fff;">
-    </iframe>
-  </div>
-  <div class="figure-card">
-    <h4>Cluster Thematic Radar</h4>
-    <p class="figure-caption">Radar chart showing thematic composition across different clusters.</p>
-    <iframe
-      title="Cluster thematic radar"
-      loading="lazy"
-      src="{{ '/assets/data/website_figures/cluster_thematic_radar.html' | relative_url }}"
-      style="width:100%; min-height:520px; border:1px solid #e5e5e5; border-radius:8px; background:#fff;">
-    </iframe>
-  </div>
-  <div class="figure-card">
-    <h4>Communities vs GCC</h4>
-    <p class="figure-caption">Comparison between discovered communities and ground truth GCC classifications.</p>
-    <iframe
-      title="Communities vs GCC"
-      loading="lazy"
-      src="{{ '/assets/data/website_figures/communities_vs_gcc.html' | relative_url }}"
-      style="width:100%; min-height:520px; border:1px solid #e5e5e5; border-radius:8px; background:#fff;">
-    </iframe>
-  </div>
-  <div class="figure-card">
-    <h4>Community Negative Network</h4>
-    <p class="figure-caption">Network visualization showing negative interactions between communities.</p>
-    <iframe
-      title="Community negative network"
-      loading="lazy"
-      src="{{ '/assets/data/website_figures/community_negative_network.html' | relative_url }}"
-      style="width:100%; min-height:520px; border:1px solid #e5e5e5; border-radius:8px; background:#fff;">
-    </iframe>
-  </div>
-  <div class="figure-card">
-    <h4>Emotional Profile Differences</h4>
-    <p class="figure-caption">Visualization highlighting differences in emotional profiles between groups.</p>
-    <iframe
-      title="Emotional profile differences"
-      loading="lazy"
-      src="{{ '/assets/data/website_figures/emotional_profile_differences.html' | relative_url }}"
-      style="width:100%; min-height:520px; border:1px solid #e5e5e5; border-radius:8px; background:#fff;">
-    </iframe>
-  </div>
-  <div class="figure-card">
-    <h4>Linguistic Profiles Map</h4>
-    <p class="figure-caption">Spatial representation of linguistic characteristics across communities.</p>
-    <iframe
-      title="Linguistic profiles map"
-      loading="lazy"
-      src="{{ '/assets/data/website_figures/linguistic_profiles_map.html' | relative_url }}"
-      style="width:100%; min-height:520px; border:1px solid #e5e5e5; border-radius:8px; background:#fff;">
-    </iframe>
-  </div>
-  <div class="figure-card">
-    <h4>Negative Posts Distribution</h4>
-    <p class="figure-caption">Distribution analysis of negative content across different dimensions.</p>
-    <iframe
-      title="Negative posts distribution"
-      loading="lazy"
-      src="{{ '/assets/data/website_figures/negative_posts_distribution.html' | relative_url }}"
-      style="width:100%; min-height:520px; border:1px solid #e5e5e5; border-radius:8px; background:#fff;">
-    </iframe>
-  </div>
-  <div class="figure-card">
-    <h4>Subreddit Clusters Map</h4>
-    <p class="figure-caption">Geographic or embedding-space visualization of subreddit cluster assignments.</p>
-    <iframe
-      title="Subreddit clusters map"
-      loading="lazy"
-      src="{{ '/assets/data/website_figures/subreddit_clusters_map.html' | relative_url }}"
-      style="width:100%; min-height:520px; border:1px solid #e5e5e5; border-radius:8px; background:#fff;">
-    </iframe>
-  </div>
-  <div class="figure-card">
-    <h4>Top Negative Blocks</h4>
-    <p class="figure-caption">Identification and visualization of the most problematic content blocks.</p>
-    <iframe
-      title="Top negative blocks"
-      loading="lazy"
-      src="{{ '/assets/data/website_figures/top_negative_blocks.html' | relative_url }}"
-      style="width:100%; min-height:520px; border:1px solid #e5e5e5; border-radius:8px; background:#fff;">
-    </iframe>
-  </div>
-</div>
+* Sudden spike in hostile comments and brigading reports.
+* A single external subreddit appears repeatedly in the mod logs.
+* Goal: understand whether this is a coordinated attack, where it comes from, what patterns it follows, and how to stop it with targeted, temporary interventions.
 
 ---
 
-*Note: The interactive plots above are generated using Plotly. To update the visualizations, modify the `generate_plots.py` script and regenerate the JSON files.*
+## 1. First signals: “Something is wrong”
 
-<script>
-// Load and render Plotly plots
-document.addEventListener('DOMContentLoaded', function() {
-    const plotSources = {
-        time: '{{ "/assets/data/research/time_series.json" | relative_url }}',
-        distribution: '{{ "/assets/data/research/distribution.json" | relative_url }}',
-        correlation: '{{ "/assets/data/research/correlation.json" | relative_url }}',
-        comparative: '{{ "/assets/data/research/comparative.json" | relative_url }}'
-    };
+* Daily activity plot shows an abnormal burst in inbound crossposts.
+* Tone analysis reveals a steep drop in average sentiment for incoming links during the spike.
+* Heavy-tail distribution confirms that normally negativity is rare — but today’s event is concentrated and extreme.
+* The mod suspects a targeted negative crosslink campaign rather than organic activity.
 
-    // Load Time Series Plot
-    fetch(plotSources.time)
-        .then(response => response.json())
-        .then(data => {
-            Plotly.newPlot('time-series-plot', data.data, data.layout, {responsive: true});
-        })
-        .catch(error => console.error('Error loading time series plot:', error));
-    
-    // Load Distribution Plot
-    fetch(plotSources.distribution)
-        .then(response => response.json())
-        .then(data => {
-            Plotly.newPlot('distribution-plot', data.data, data.layout, {responsive: true});
-        })
-        .catch(error => console.error('Error loading distribution plot:', error));
-    
-    // Load Correlation Plot
-    fetch(plotSources.correlation)
-        .then(response => response.json())
-        .then(data => {
-            Plotly.newPlot('correlation-plot', data.data, data.layout, {responsive: true});
-        })
-        .catch(error => console.error('Error loading correlation plot:', error));
-    
-    // Load Comparative Plot
-    fetch(plotSources.comparative)
-        .then(response => response.json())
-        .then(data => {
-            Plotly.newPlot('comparative-plot', data.data, data.layout, {responsive: true});
-        })
-        .catch(error => console.error('Error loading comparative plot:', error));
-});
-</script>
+### Graphs
+
+- **Graph 1 — Global tone over time** (`plot_global_tone()`) shows the sudden negative spike.
+- **Graph 2 — Daily inbound crosspost volume** (daily aggregates) highlights the abnormal burst.
+- **Graph 3 — Heavy-tail distribution of negative links** (`bar_negative_block_top()`) proves that today's hostility is unusually concentrated.
+
+---
+
+## 2. Where the attack originates
+
+* Crosspost graph (directed subreddit→subreddit) highlights one source community with sudden high negative edge weight.
+* Comparison with historical behavior shows this source rarely interacts with the mod’s subreddit.
+* The negativity ratio of this source spikes well above its baseline.
+* Network structure suggests this is not a multi-community swarm but a single “attack node” dominating.
+
+### Graphs
+
+- **Graph 4 — Subreddit→subreddit negative-weight graph** (`build_graph()`) pinpoints the attacker.
+- **Graph 5 — Top negative inbound communities** (`report_plots.bar_negative_block_top`) ranks hostile sources by severity.
+
+---
+
+## 3. How the attackers communicate
+
+* Linguistic profiling of inbound posts shows strong thematic and emotional signatures:
+  * Highly negative emotional tone.
+  * Stylistic markers typical of “call-to-action” or “mocking” posts.
+  * Distinct vocabulary compared to neutral crossposts.
+* At the comment level, VADER/LIWC-style sentiment confirms systematic hostility.
+* This suggests intentional mobilization, not random disagreement.
+
+### Graphs
+
+- **Graph 6 — Sentiment distribution for attacker vs normal links** compares VADER histograms to show hostility.
+- **Graph 7 — Emotional/stylistic linguistic profile comparison** (radar/bar from `linguistic_features.py`) surfaces anger, mockery, and CTA signals.
+
+---
+
+## 4. Why this community targeted us
+
+* Embedding space positioning: the attacking subreddit sits far from the mod’s community cluster.
+* Semantic distance (PCA/t-SNE visualization) shows minimal thematic similarity; users rarely overlap.
+* Communities near the attacker (in embedding space) share similar linguistic profiles and are also high-negativity hubs.
+* The attack is likely “cultural opposition” rather than reaction to a specific post.
+
+### Graphs
+
+- **Graph 8 — Embedding space map** (`similarity.plot_negativity_vs_distance` or custom scatter) places the attacker far from our cluster.
+- **Graph 9 — Embedding distance vs negativity** demonstrates how ideological distance correlates with hostile tone.
+
+---
+
+## 5. How bad the situation is
+
+* Block-level Louvain clustering shows the attacker’s whole bloc has elevated negativity.
+* Intra-bloc vs inter-bloc stats show the mod’s subreddit is one of the preferred targets of this bloc.
+* Temporal windowing reveals the attack escalates quickly, peaks, and decays slowly — a characteristic brigading signature.
+* Hostility vs activity plots show high hostility without a matching increase in genuine engagement.
+
+### Graphs
+
+- **Graph 10 — Louvain community structure** (`cluster_louvain()`) distinguishes the hostile bloc from ours.
+- **Graph 11 — Block-to-block negativity heatmap** captures the disproportionate targeting.
+- **Graph 12 — Hostility vs activity** (`time_communities_utils`) confirms brigading behavior.
+
+---
+
+## 6. How the attack spreads
+
+* Time-window community graphs show negativity diffusing from the attacker to a few “nearby” communities.
+* Crossposts from those neighbors replicate the negative framing, amplifying the attack.
+* Multiple bursts indicate repeated triggers, possibly from inside the attacker’s subreddit.
+
+### Graphs
+
+- **Graph 13 — Time-sliced network snapshots (T1 → T6)** from `time_communities_utils` visualize the initial spark and spread.
+- **Graph 14 — Negativity over time per source** (multi-line windowed chart) shows echo waves and reinforcement bursts.
+
+---
+
+## 7. What the mod can do
+
+* Simulated counterfactual: removing crossposts from the attacker reduces >80% of inbound negativity.
+* Short-term intervention: temporarily blocking links from the attacker subreddit.
+* Alternative intervention: rate-limiting or requiring manual mod approval for crossposts.
+* More precise option: ban only negative-tone crossposts (detected with threshold sentiment).
+* Recommendation supported by data: block or throttle the single negative source rather than broad restrictions.
+
+### Graphs
+
+- **Graph 15 — Counterfactual: remove attacker links** quantifies the >80% hostility reduction if edges are cut.
+- **Graph 16 — Impact of rate-limiting or crosspost ban** compares simulated policy scenarios (ban, throttle, manual approval).
+
+---
+
+## 8. Aftermath: Did it work?
+
+* Post-intervention metrics show:
+  * Inbound crossposts drop sharply.
+  * Sentiment normalizes within hours.
+  * Community activity stabilizes.
+  * No significant spillover retaliation from the attacker’s bloc.
+* Long-term monitoring indicates no lasting hostility cycle.
+
+### Graphs
+
+- **Graph 17 — Post-intervention inbound negativity** shows the time series returning to baseline.
+- **Graph 18 — Post-intervention sentiment normalization** visualizes VADER tone recovery.
+- **Graph 19 — Community activity pre vs post** confirms engagement stabilizes without chilling effects.
+
+---
+
+## 9. Broader lesson for subreddit governance
+
+* The attack is primarily a single-source, culturally distant conflict, not an organic disagreement.
+* Targeted, temporary throttling of the hostile node outperforms broad policy shifts.
+* Continuous monitoring of embedding distance plus negativity rates helps surface the next siege before it peaks.
+
+### Graphs
+
+- **Graph 20 — Summary dashboard** stitches together the negativity distribution, attacker share, bloc map, and embedding map to reinforce governance takeaways.
+
+**Story placement:** “Takeaways for future moderation and predictive tools.”
+</div>
 
 <style>
-.figure-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  margin-top: 1.5rem;
-}
-
-.figure-card {
-  width: 100%;
-  margin-bottom: 2rem;
-}
-
-.figure-card h4 {
-  margin-bottom: 0.35rem;
-}
-
-.figure-caption {
-  font-size: 0.95rem;
-  color: #666;
-  margin-bottom: 0.75rem;
-}
-
-/* Make content area wider but not full width */
-main.container-fluid .col {
-  max-width: 1400px;
+.research-outline {
+  width: min(66.6667vw, 1200px);
   margin: 0 auto;
   padding: 0 2rem;
 }
-</style>
 
+@media (max-width: 960px) {
+  .research-outline {
+    width: 100%;
+    padding: 0 1.25rem;
+  }
+}
+</style>
