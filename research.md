@@ -12,144 +12,82 @@ ext-js:
 
 # Data Story Outline: *A Moderator Under Siege*
 
-## Setup: A mod wakes up to chaos
+## Setup: You’re a tech bro launching a revolutionary AI B2B SaaS Crypto Blockchain IoT YC-backed Silicon Valley Startup
 
-* Sudden spike in hostile comments and brigading reports.
-* A single external subreddit appears repeatedly in the mod logs.
-* Goal: understand whether this is a coordinated attack, where it comes from, what patterns it follows, and how to stop it with targeted, temporary interventions.
-
----
-
-## 1. First signals: “Something is wrong”
-
-* Daily activity plot shows an abnormal burst in inbound crossposts.
-* Tone analysis reveals a steep drop in average sentiment for incoming links during the spike.
-* Heavy-tail distribution confirms that normally negativity is rare — but today’s event is concentrated and extreme.
-* The mod suspects a targeted negative crosslink campaign rather than organic activity.
-
-### Graphs
-
-- **Graph 1 — Global tone over time** (`plot_global_tone()`) shows the sudden negative spike.
-- **Graph 2 — Daily inbound crosspost volume** (daily aggregates) highlights the abnormal burst.
-- **Graph 3 — Heavy-tail distribution of negative links** (`bar_negative_block_top()`) proves that today's hostility is unusually concentrated.
+Your goal: build a new social media app for college students.  
+But, having seen the endless toxicity on platforms like Reddit, X, and Facebook, you want to avoid repeating their mistakes.  
+To do that, you need to understand **when** conflict between communities arises, **which types** of conflict are constructive vs harmful, and **why** certain interactions devolve into aggression.
 
 ---
 
-## 2. Where the attack originates
+## 1. First Steps: *How often does inter-community tension arise?*
 
-* Crosspost graph (directed subreddit→subreddit) highlights one source community with sudden high negative edge weight.
-* Comparison with historical behavior shows this source rarely interacts with the mod’s subreddit.
-* The negativity ratio of this source spikes well above its baseline.
-* Network structure suggests this is not a multi-community swarm but a single “attack node” dominating.
+* A heavy-tailed distribution confirms that negativity is usually rare.  
+* Daily activity plots show that while most crossposts are positive, negative interactions occur regularly—especially between certain pairs of communities.
 
 ### Graphs
 
-- **Graph 4 — Subreddit→subreddit negative-weight graph** (`build_graph()`) pinpoints the attacker.
-- **Graph 5 — Top negative inbound communities** (`report_plots.bar_negative_block_top`) ranks hostile sources by severity.
+- **Graph 1 — Proportion of negative crossposts (over time?)**
+- **Graph 2 — Distance between community embeddings vs interaction frequency**  
+  Shows that similar communities tend to interact more.
+- **Graph 3 — Distance between embeddings vs toxicity**  
+  Reveals a peak in negativity when communities are moderately far apart—possibly because they represent opposing worldviews (e.g., liberal vs conservative, Chiefs vs Eagles).
+
+**NOTE** I want to add a toxicity vs time or something graph here, like what stefan's notebook included. Not sure exactly what the best way to add that in would be though. 
+---
+
+## 2. Interactions Between Specific Communities
+
+Since we know mid-distance communities are more likely to clash, we now zoom into specific pairs of subreddits to illustrate real cases of tension.
+
+* A crosspost flow graph (directed: subreddit → subreddit) reveals how complex and interconnected the ecosystem is.
+
+### Graphs
+
+- **Graph 4 — Subreddit → Subreddit negative-weighted graph**
 
 ---
 
-## 3. How the attackers communicate
+## 3. Clusters: Generalizing Beyond Specific Subreddits
 
-* Linguistic profiling of inbound posts shows strong thematic and emotional signatures:
-  * Highly negative emotional tone.
-  * Stylistic markers typical of “call-to-action” or “mocking” posts.
-  * Distinct vocabulary compared to neutral crossposts.
-* At the comment level, VADER/LIWC-style sentiment confirms systematic hostility.
-* This suggests intentional mobilization, not random disagreement.
+Your future app won’t use the same communities as Reddit, but we can expect similar categories—e.g., city groups, majors, sports fandoms, political affiliations.
+
+Rather than focusing on individual subreddits, we examine **clusters** of related communities to understand broader structural patterns.
 
 ### Graphs
 
-- **Graph 6 — Sentiment distribution for attacker vs normal links** compares VADER histograms to show hostility.
-- **Graph 7 — Emotional/stylistic linguistic profile comparison** (radar/bar from `linguistic_features.py`) surfaces anger, mockery, and CTA signals.
+- **Graph 5 — Interactive network of clusters**
+
+Using this graph, we can identify the top five most problematic cluster pairs.  
+One potential intervention: **reduce or modify cross-cluster exposure** for community pairs that consistently generate toxicity.
 
 ---
 
-## 4. Why this community targeted us
+## 4. Thematic Features: Is All Negativity the Same?
 
-* Embedding space positioning: the attacking subreddit sits far from the mod’s community cluster.
-* Semantic distance (PCA/t-SNE visualization) shows minimal thematic similarity; users rarely overlap.
-* Communities near the attacker (in embedding space) share similar linguistic profiles and are also high-negativity hubs.
-* The attack is likely “cultural opposition” rather than reaction to a specific post.
+Constructive disagreement is healthy; toxicity is not.  
+Research (from the original paper) suggests that even mildly negative crossposts can produce mini-echo chambers in the comment section.  
+So simply encouraging “idea exchange” isn’t enough.
+
+* Linguistic profiling reveals strong thematic and emotional signatures across posts.
+* Comment-level sentiment (e.g., VADER, LIWC) identifies the degree of hostility in negative crossposts.
 
 ### Graphs
 
-- **Graph 8 — Embedding space map** (`similarity.plot_negativity_vs_distance` or custom scatter) places the attacker far from our cluster.
-- **Graph 9 — Embedding distance vs negativity** demonstrates how ideological distance correlates with hostile tone.
+- **Graph 6 — Emotional profile of positive vs negative posts**
+- **Graph 7 — Stylistic profile of positive vs negative posts**
+- **Graph 8 — Emotional + stylistic signatures by community cluster**
+
+We use Graphs 6 and 7 to identify which emotional or stylistic features distinguish constructive disagreements from toxic ones, helping determine which types of interactions should be encouraged vs limited.
 
 ---
 
-## 5. How bad the situation is
+## 5. Lessons for Your Genius Multi-Billion-Dollar App Idea
 
-* Block-level Louvain clustering shows the attacker’s whole bloc has elevated negativity.
-* Intra-bloc vs inter-bloc stats show the mod’s subreddit is one of the preferred targets of this bloc.
-* Temporal windowing reveals the attack escalates quickly, peaks, and decays slowly — a characteristic brigading signature.
-* Hostility vs activity plots show high hostility without a matching increase in genuine engagement.
+* Reduce contact between clusters that consistently generate toxic interactions.  
+* Maintain or increase interaction between clusters that tend to have productive, non-toxic debates.  
+* Flag or manually monitor particularly problematic communities to stop toxicity before it escalates.
 
-### Graphs
-
-- **Graph 10 — Louvain community structure** (`cluster_louvain()`) distinguishes the hostile bloc from ours.
-- **Graph 11 — Block-to-block negativity heatmap** captures the disproportionate targeting.
-- **Graph 12 — Hostility vs activity** (`time_communities_utils`) confirms brigading behavior.
-
----
-
-## 6. How the attack spreads
-
-* Time-window community graphs show negativity diffusing from the attacker to a few “nearby” communities.
-* Crossposts from those neighbors replicate the negative framing, amplifying the attack.
-* Multiple bursts indicate repeated triggers, possibly from inside the attacker’s subreddit.
-
-### Graphs
-
-- **Graph 13 — Time-sliced network snapshots (T1 → T6)** from `time_communities_utils` visualize the initial spark and spread.
-- **Graph 14 — Negativity over time per source** (multi-line windowed chart) shows echo waves and reinforcement bursts.
-
----
-
-## 7. What the mod can do
-
-* Simulated counterfactual: removing crossposts from the attacker reduces >80% of inbound negativity.
-* Short-term intervention: temporarily blocking links from the attacker subreddit.
-* Alternative intervention: rate-limiting or requiring manual mod approval for crossposts.
-* More precise option: ban only negative-tone crossposts (detected with threshold sentiment).
-* Recommendation supported by data: block or throttle the single negative source rather than broad restrictions.
-
-### Graphs
-
-- **Graph 15 — Counterfactual: remove attacker links** quantifies the >80% hostility reduction if edges are cut.
-- **Graph 16 — Impact of rate-limiting or crosspost ban** compares simulated policy scenarios (ban, throttle, manual approval).
-
----
-
-## 8. Aftermath: Did it work?
-
-* Post-intervention metrics show:
-  * Inbound crossposts drop sharply.
-  * Sentiment normalizes within hours.
-  * Community activity stabilizes.
-  * No significant spillover retaliation from the attacker’s bloc.
-* Long-term monitoring indicates no lasting hostility cycle.
-
-### Graphs
-
-- **Graph 17 — Post-intervention inbound negativity** shows the time series returning to baseline.
-- **Graph 18 — Post-intervention sentiment normalization** visualizes VADER tone recovery.
-- **Graph 19 — Community activity pre vs post** confirms engagement stabilizes without chilling effects.
-
----
-
-## 9. Broader lesson for subreddit governance
-
-* The attack is primarily a single-source, culturally distant conflict, not an organic disagreement.
-* Targeted, temporary throttling of the hostile node outperforms broad policy shifts.
-* Continuous monitoring of embedding distance plus negativity rates helps surface the next siege before it peaks.
-
-### Graphs
-
-- **Graph 20 — Summary dashboard** stitches together the negativity distribution, attacker share, bloc map, and embedding map to reinforce governance takeaways.
-
-**Story placement:** “Takeaways for future moderation and predictive tools.”
 </div>
 
 <style>
