@@ -67,18 +67,26 @@ One potential intervention: **reduce or modify cross-cluster exposure** for comm
 
 Constructive disagreement is healthy; toxicity is not.  
 Research (from the original paper) suggests that even mildly negative crossposts can produce mini-echo chambers in the comment section.  
+
 So simply encouraging “idea exchange” isn’t enough.
 
-* Linguistic profiling reveals strong thematic and emotional signatures across posts.
-* Comment-level sentiment (e.g., VADER, LIWC) identifies the degree of hostility in negative crossposts.
+Linguistic profiling reveals strong thematic and emotional signatures across posts.
+Comment-level sentiment (e.g., VADER, LIWC) identifies the degree of hostility in negative crossposts.
 
+We should use these two to figure out what pairs of subreddit/cluster interactions are toxic and what aren't.
 ### Graphs
 
 - **Graph 6 — Emotional profile of positive vs negative posts**
 - **Graph 7 — Stylistic profile of positive vs negative posts**
 - **Graph 8 — Emotional + stylistic signatures by community cluster**
 
-We use Graphs 6 and 7 to identify which emotional or stylistic features distinguish constructive disagreements from toxic ones, helping determine which types of interactions should be encouraged vs limited.
+We use Graphs 6 and 7 to identify which emotional or stylistic features distinguish constructive disagreements from toxic ones, helping determine which types of interactions should be encouraged vs limited. Ideally we end up with a couple of subreddits that perhaps need more moderation.
+
+## 5. Manual moderation
+
+Leading in from the previous point, let us take the top 1 or two clusters in terms of negativety and check how negative they are. We can state that certain clusters, due to the amount of hostility in crossposts, require manual moderation. We aim to figure out what those clusters are. 
+
+(Note, the clusters we pick can be relatively arbritrary, we can just state that due to a certain shared feature such as a high emotional characteristic or volume of crossposts they need more moderation. The feature just need to be quantitative)
 
 ---
 
