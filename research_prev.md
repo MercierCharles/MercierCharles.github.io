@@ -2,7 +2,7 @@
 layout: page
 title: Data Analysis Research
 subtitle: Exploring patterns and insights through data visualization
-permalink: /research/
+permalink: /research_prev/
 full-width: true
 ext-js:
   - href: "https://cdn.plot.ly/plotly-2.27.0.min.js"
