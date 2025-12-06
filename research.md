@@ -20,18 +20,80 @@ To do that, you need to understand **when** conflict between communities arises,
 
 ---
 
-## 1. First Steps: *How often does inter-community tension arise?*
+## 1. First Steps: *How hostile are the interactions between subreddits?*
 
-* A heavy-tailed distribution confirms that negativity is usually rare.  
-* Daily activity plots show that while most crossposts are positive, negative interactions occur regularly—especially between certain pairs of communities.
+First of all, let's look at the proportion of negative posts across the subreddits.
 
-### Graphs
+![Overall tone](/assets/images/global_tone.png)
 
-- **Graph 1 — Proportion of negative crossposts (over time?)**
-- **Graph 2 — Distance between community embeddings vs interaction frequency**  
-  Shows that similar communities tend to interact more.
-- **Graph 3 — Distance between embeddings vs toxicity**  
-  Reveals a peak in negativity when communities are moderately far apart—possibly because they represent opposing worldviews (e.g., liberal vs conservative, Chiefs vs Eagles).
+We notice something very interesting and encouraging:
+the majority of posts are either positive or neutral (90.3%), and only 9.7% are negative.
+This is very promising for our future app, as it means that the normal mode of interaction isn't negative!
+
+The goal now is to understand this 9.7% more.
+
+
+To do this, we will look at the distribution of the number of negative posts per subreddit:
+we rank the subreddits by how many negative posts they send (from most to least) and we plot this distribution on a log-log scale.
+![Negative posts per subreddit](/assets/images/negative_subreddit.png)
+
+We recognize a well-known distribution: a heavy-tailed distribution.
+This means that a small portion of subreddits concentrate a very large number of negative posts, while the vast majority of subreddits post very few.
+
+That's really encouraging for moderation because we only have to focus on small subreddit.
+
+## 2. From individual subreddits to communities
+
+
+Now that we know negativity is concentrated in a small number of subreddits, we can get a more structural view of the network.
+
+
+
+Rather than looking at subreddits one by one, we group them into **communities** (or “blocks”) of related subreddits.
+
+
+We first construct a positive graph (G+) where:
+- each node represents a **subreddit**;
+- an edge connects two subreddits when they send each other many positive posts.
+
+On this graph (G+), we apply the **Louvain** algorithm to detect groups of subreddits that interact positively with each other.
+We found **2,086 communities** (blocks of subreddits), with a modularity of approximately **0.55** which indicates that the positive links are well clustered into communities.
+
+
+What is louvain ?
+
+### Why work on the graph (G+)?
+You might ask why focus on the G+ graph and not on all the positive and negative interactions.
+The reason is simple :
+
+- A **positive link** between two subreddits represents the **affinity** between them (same theme, communities that appreciate each other)
+- A **negative link**, on the other hand, is more likely to represents a **conflict** between two groups (mockery, attacks, raids)
+
+If we were to use the full graph (with both positive and negative links) to cluster, we would be mixing these two types of relationships and risk grouping subreddits that both like and attack each other into the same "community."
+
+However, what we want to see are the conflicts between communities.
+By focusing only on (G+), we amplify the network's affinity structure and then we can analyse how negative links circulate between these blocks to understand where the negativity lies.
+
+Now we have the communities, we can see the distribution of the number of negative posts but not per subreddits as before but per communities this time !
+
+![Bar negative block](/assets/images/bar_negative_block.png)
+
+As with the distribution of the number of negative posts per subreddit, a minority of communities are involved in the majority of negative interactions.
+Only 43 out of 2082 communities have more than 5 negative posts !
+
+It is still a bit abstract, though. To better understand how these communities relate to each other, we now visualize the **community network**:
+
+<div style="text-align: center; margin: 1rem 0;">
+  <iframe
+    src="/assets/images/network_graph.html"
+    width="100%"
+    height="500"
+    style="border: none;"
+  ></iframe>
+</div>
+
+
+That's more parlant !
 
 **NOTE** I want to add a toxicity vs time or something graph here, like what stefan's notebook included. Not sure exactly what the best way to add that in would be though. 
 ---
