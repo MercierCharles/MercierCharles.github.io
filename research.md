@@ -152,7 +152,55 @@ Leading in from the previous point, let us take the top 1 or two clusters in ter
 
 ---
 
-## 5. Lessons for Your Genius Multi-Billion-Dollar App Idea
+## 6. Some good news: metrics over time
+
+In our previous analysis, we determined that the toxicity on Reddit is mainly driven by a few communities. 
+This is good news as moderating a few toxic communities is much easier than moderating the whole website.
+
+Let's take another angle, that of the evolution over time of the toxic interactions: is it getting better or worse?
+
+This is an interesting question as we want to develop our own social media website, and seeing how reddit's decentralized moderation system works will help us to determine if we use a similar system or not.
+
+Since we now are a veteran of ADA's methodology, let's first take a look at how the network evolves over time before making any hasty conclusions!
+
+Below are 4 time graphs with statistics over a moving window of 1 month, made by our very smart colleague. Sadly, he forgot to annotate these "trivial graphs". Let's not panic and put on our detective hat to understand these:
+
+![community_metrics_over_time](/assets/images/community_metrics_over_time.png)
+
+On the top left and top right graphs, we can see that the number of edges & nodes increases almost linearly, which is slightly surprising since reddit had an explosive growth in that timeframe, but it's a particularity of the way reddit has communities. 
+
+Indeed, while the number of users grew exponentially over that timeframe [TODO CITE], one can explain this linear growth by simple graph theory: '[preferential attachment](https://en.wikipedia.org/wiki/Preferential_attachment)', a fancy word for "the rich get richer". In our case here, new users join existing communities instead of creating new ones, meaning that those communities grow larger. But we'll get back to that last part.
+
+Now let's try to understand the ones at the bottom, starting with
+- The bottom left: the degree of a window over time. The degree is the number of connections(edges) each node has to other nodes. The higher, the more connected the graph is. We can see that over time this number fluctuates quite a bit, but on average it increases over the timeframe: Reddit becomes more interconnected, more dialog! This is good news, we want to emulate the same behavior in our social media. 
+- The bottom right: You remember you're a detective that took the [internet analytics class](https://edu.epfl.ch/coursebook/en/internet-analytics-COM-308) and vaguely remember that the modularity, in a nutshell (see below for complete explanation) is the expected number of edges between two nodes. This is a measure of how much the graph is "community-ified". A score of 0.6+ is a high score for such a graph, meaning that reddit is quite well partitioned in communities. This is good as Reddit managed to group similar people together, but the flipside is that Reddit also could potentially lead to "echo chambers". This is something we need to watch out for in our new social media.
+
+[TODO explain the modularity]
+
+Now, let's take a look at the proportion of positive posts vs negatives over time. Ah, our colleague made just the perfect graph! Let's take a closer look: 
+![a](/assets/images/positives_vs_negatives_time_dual_axis.png)
+
+Well that's not exactly good news... It seems that the number of positive interactions grows the same as the negatives. This means that the reddit way of moderating is keeping the status quo, not improving it.
+
+BUT WAIT, let's not be too hasty, indeed we are now a seasoned ADA enthusiast. Let's make sure we understand the graph before concluding that Reddit moderation is bad, even if it seems likely.
+
+Hmmmm, the timescale looks the same as the other graph, the labels make sense, but there aha! The scales are different! Our sneaky colleague put both numbers on 2 different axies, and indeed the proportional growth of the positive and negative interactions is about the same. 
+
+But, let's plot them on the same scale:
+![b](/assets/images/positives_vs_negatives_time_single_axis.png)
+
+Aha! The negative interactions pale in comparison to the positive ones, so actually this is excellent news! This means  
+
+Let's now make a graph of our own to find out the few negative interactions are coming from. We want to find out if it's general negativity or if it's particular communities:
+![c](/assets/images/hostility_vs_activity.png)
+
+[TODO reformulate or remove since it's basically the same graph as in the introduction]
+
+We can see that most communities are in the lower half, and that there are a few clusters in the upper parts of the graph. This is excellent news, as this means that we can focus our moderating efforts on those "toxicity prone" communities and thus curb the general toxicity on Reddit!
+
+---
+
+## 7. Lessons for Your Genius Multi-Billion-Dollar App Idea
 
 * Reduce contact between clusters that consistently generate toxic interactions.  
 * Maintain or increase interaction between clusters that tend to have productive, non-toxic debates.  
