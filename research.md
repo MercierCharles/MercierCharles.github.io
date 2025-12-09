@@ -57,6 +57,10 @@ Rather than focusing on individual subreddits, we examine **clusters** of relate
 ### Graphs
 
 - **Graph 5 — Interactive network of clusters**
+<iframe 
+    src="/assets/data/website_figures/clusters_interaction_network.html"
+    style="width:100%; height:70vh; border:none;">
+</iframe>
 
 Using this graph, we can identify the top five most problematic cluster pairs.  
 One potential intervention: **reduce or modify cross-cluster exposure** for community pairs that consistently generate toxicity.
