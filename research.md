@@ -28,7 +28,7 @@ First of all, let's look at the proportion of negative posts across the subreddi
 
 We notice something very interesting and encouraging:
 the majority of posts are either positive or neutral (90.3%), and only 9.7% are negative.
-This is very promising for our future app, as it means that the normal mode of interaction isn't negative!
+This is very promising for our future app : the normal mode of interaction isn't negative!
 
 The goal now is to understand this 9.7% more.
 
@@ -40,27 +40,24 @@ we rank the subreddits by how many negative posts they send (from most to least)
 We recognize a well-known distribution: a heavy-tailed distribution.
 This means that a small portion of subreddits concentrate a very large number of negative posts, while the vast majority of subreddits post very few.
 
-That's really encouraging for moderation because we only have to focus on small subreddit.
+That's really encouraging for moderation because we only have to focus on small set of subreddit.
 
 ## 2. From individual subreddits to communities
 
+We now know that negativity is concentrated in a small number of subreddits.
+But working only at the level of individual subreddits becomes quickly complicated.
 
-Now that we know negativity is concentrated in a small number of subreddits, we can get a more structural view of the network.
+So what can we do?
 
-
-
-Rather than looking at subreddits one by one, we group them into **communities** (or “blocks”) of related subreddits.
+We can cluster them! We will group them into communities. There are several methods for doing this, as we'll see, but for now we'll focus on the Louvain method.
 
 
 We first construct a positive graph (G+) where:
 - each node represents a **subreddit**;
-- an edge connects two subreddits when they send each other many positive posts.
+- an edge connects two subreddits when there is at least one positive post between them, its weight is the number of positive posts
 
 On this graph (G+), we apply the **Louvain** algorithm to detect groups of subreddits that interact positively with each other.
-We found **2,086 communities** (blocks of subreddits), with a modularity of approximately **0.55** which indicates that the positive links are well clustered into communities.
-
-
-What is louvain ?
+We found **2086 communities** (blocks of subreddits), with a modularity of approximately **0.55** which indicates that the positive links are well clustered into communities.
 
 ### Why work on the graph (G+)?
 You might ask why focus on the G+ graph and not on all the positive and negative interactions.
@@ -79,7 +76,7 @@ Now we have the communities, we can see the distribution of the number of negati
 ![Bar negative block](/assets/images/bar_negative_block.png)
 
 As with the distribution of the number of negative posts per subreddit, a minority of communities are involved in the majority of negative interactions.
-Only 43 out of 2082 communities have more than 5 negative posts !
+Only 43 out of 2086 communities have more than 5 negative posts !
 
 It is still a bit abstract, though. To better understand how these communities relate to each other, we now visualize the **community network**:
 
@@ -93,7 +90,24 @@ It is still a bit abstract, though. To better understand how these communities r
 </div>
 
 
-That's more parlant !
+It's much more visual! But how do we understand this *network graph*?
+
+Each node represents a community identified by Louvain:
+
+- the color represents its **negativity rate** : $negative\_rate(C) = \dfrac{neg\_out(C)}{total\_out(C)}$ (when $total\_out(C) > 0$).
+- each edge represents a **negative link** sent from one community to another
+- the size of the node represents the **number of subreddits** in the community.
+
+We observe two main things:
+
+- **A highly connected core**: the largest communities are located there and concentrate most of the negativity : they exchange many negative links with each other and around them, many small communities attack these large communities. These large communities also target certain small communities.
+- **Many small communities on the periphery**: they have few or no negative links and don't participate in the negative interactions of the core.
+
+We can conclude that only these large online communities concentrate the majority of the negativity.
+This suggests something very interesting for your future app: that moderation should focus on a small core of large communities !
+
+Let's take a closer look at their posts:
+
 
 **NOTE** I want to add a toxicity vs time or something graph here, like what stefan's notebook included. Not sure exactly what the best way to add that in would be though. 
 ---
