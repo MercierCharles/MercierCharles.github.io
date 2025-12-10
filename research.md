@@ -153,6 +153,7 @@ Linguistic profiling reveals strong thematic and emotional signatures across pos
 Comment-level sentiment (e.g., VADER, LIWC) identifies the degree of hostility in negative crossposts.
 
 We should use these two to figure out what pairs of subreddit/cluster interactions are toxic and what aren't.
+
 ### Graphs
 
 - **Graph 6 — Emotional profile of positive vs negative posts**
@@ -162,6 +163,12 @@ We should use these two to figure out what pairs of subreddit/cluster interactio
 </iframe>
 - **Graph 7 — Stylistic profile of positive vs negative posts**
 - **Graph 8 — Emotional + stylistic signatures by community cluster**
+
+Above, we have mapped out what kidn of *emotional* and *stylistic* signatures conflicts in each cluster tend to have. Here, we see that the following clusters stand out:
+
+- **Cluster 7():** This cluster is high in anger, and swearing, which indicates a tendency for more unwanted conflicts
+- **Cluster 1():** This cluster is similar to cluster 7, containing high amounts of swearing and anger. Similarly, in the stylistic features we see a high portion of upper case letters used, which is common in long, angry posts which indicate 'rants'.
+
 
 We use Graphs 6 and 7 to identify which emotional or stylistic features distinguish constructive disagreements from toxic ones, helping determine which types of interactions should be encouraged vs limited. Ideally we end up with a couple of subreddits that perhaps need more moderation.
 
