@@ -157,11 +157,15 @@ We should use these two to figure out what pairs of subreddit/cluster interactio
 ### Graphs
 
 - **Graph 6 — Emotional profile of positive vs negative posts**
+![Negative posts per subreddit](/assets/data/website_figures/emotional_profile_by_cluster.png)
+
+- **Graph 7 — Stylistic profile of positive vs negative posts**
+![Negative posts per subreddit](/assets/data/website_figures/stylistic_profile_by_cluster.png)
+
 <iframe 
-    src="/assets/data/website_figures/emotional_profile_by_cluster.png"
+    src="/assets/data/website_figures/stylistic_profile_by_cluster.png"
     style="width:100%; height:70vh; border:none;">
 </iframe>
-- **Graph 7 — Stylistic profile of positive vs negative posts**
 - **Graph 8 — Emotional + stylistic signatures by community cluster**
 
 Above, we have mapped out what kidn of *emotional* and *stylistic* signatures conflicts in each cluster tend to have. Here, we see that the following clusters stand out:
