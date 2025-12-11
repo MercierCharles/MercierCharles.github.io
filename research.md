@@ -10,27 +10,43 @@ ext-js:
 
 <div class="research-outline" markdown="1">
 
-# Data Story Outline: *A Moderator Under Siege*
+# Data Story Outline: *Mapping Cross-Subreddit Conflict on Reddit*
 
 ## Setup: You’re a tech bro launching a revolutionary AI B2B SaaS Crypto Blockchain IoT YC-backed Silicon Valley Startup
 
-Your goal: build a new social media app for college students.  
-But, having seen the endless toxicity on platforms like Reddit, X, and Facebook, you want to avoid repeating their mistakes.  
-To do that, you need to understand **when** conflict between communities arises, **which types** of conflict are constructive vs harmful, and **why** certain interactions devolve into aggression.
+You’ve just raised $3M pre-seed to build a new social app for college students.
+
+There’s just one problem.
+
+Platforms like Reddit, X, and Facebook, despite being rich sources of information and community interaction, all ended up with pockets of extreme hostility, community clashes, and drama.
+
+Before you repeat their mistakes, you need to understand:
+
+- When conflict between communities arises?
+
+- Which types of conflict are constructive vs harmful?
+
+- Why some interactions devolve into hostility while others don’t?
+
+- How can we prevent these same pitfalls in our own social media service?
+
+To answer these questions, you dig into crosspost data from Reddit—one of the most complex ecosystems of online communities.
 
 ---
 
-## 1. First Steps: *How hostile are the interactions between subreddits?*
+## 1.*How hostile are subreddit interactions, really?*
 
-First of all, let's look at the proportion of negative posts across the subreddits.
+We begin with a global picture of tone across posts.
 
 ![Overall tone](/assets/images/global_tone.png)
 
-We notice something very interesting and encouraging:
-the majority of posts are either positive or neutral (90.3%), and only 9.7% are negative.
-This is very promising for our future app : the normal mode of interaction isn't negative!
+Surprisingly, we notice something that is rather encouraging. encouraging:
 
-The goal now is to understand this 9.7% more.
+**Negativey is the exception, not the norm**
+
+The majority of posts are either positive or neutral (90.3%), and only 9.7% are negative.
+
+However, exceptions do matter. Even a relatively small group of negative posts tend to have a large impact on the general athmosphere of social media. Our goal therefore is to understand this 9.7% more.
 
 
 To do this, we will look at the distribution of the number of negative posts per subreddit:
@@ -40,12 +56,14 @@ we rank the subreddits by how many negative posts they send (from most to least)
 We recognize a well-known distribution: a heavy-tailed distribution.
 This means that a small portion of subreddits concentrate a very large number of negative posts, while the vast majority of subreddits post very few.
 
-That's really encouraging for moderation because we only have to focus on small set of subreddit.
+For moderation, this is encouraging. 
+If a small cluster is responsible for most negative interactions, targeted interventions could be extremely effective. Even minimal moderation has the potential to have a strong impact on ensuring that our new app doesn't fall into the same patterns of toxicity as Reddit.
 
 ## 2. From individual subreddits to communities
 
 We now know that negativity is concentrated in a small number of subreddits.
-But working only at the level of individual subreddits becomes quickly complicated.
+
+But working only at the level of individual subreddits becomes quickly complicated. Additionally, our app isn't going to be a simple copy of reddit. We will likely have *similar* communities, but it's extremeley unlikely that they will end up being the exact same. 
 
 So what can we do?
 
@@ -104,18 +122,24 @@ We observe two main things:
 - **Many small communities on the periphery**: they have few or no negative links and don't participate in the negative interactions of the core.
 
 We can conclude that only these large online communities concentrate the majority of the negativity.
-This suggests something very interesting for your future app: that moderation should focus on a small core of large communities !
+This data supports our earlier observation about our moderation strategy: We should focus on a small core of large communities!
 
 Let's take a closer look at their posts:
 
-**NOTE** I want to add a toxicity vs time or something graph here, like what stefan's notebook included. Not sure exactly what the best way to add that in would be though. 
 ---
 
 ## 2. Interactions Between Specific Communities
 
-Since we know mid-distance communities are more likely to clash, we now zoom into specific pairs of subreddits to illustrate real cases of tension.
+Now that we understand the global structure, we examine specific pairs of communities to illustrate how conflicts emerge.
 
-* A crosspost flow graph (directed: subreddit → subreddit) reveals how complex and interconnected the ecosystem is.
+A directed crosspost-flow graph (subreddit → subreddit) shows that:
+
+- Some communities frequently receive negative crossposts from many sources
+
+- Others initiate negative interactions more than they receive
+
+- Some relationships are highly reciprocal, forming mini “feuds”
+
 
 ### Graphs
 
@@ -123,11 +147,11 @@ Since we know mid-distance communities are more likely to clash, we now zoom int
 
 ---
 
-## 3. Clusters: Generalizing Beyond Specific Subreddits
+## 3. Beyond Reddit: Generalizing Beyond Specific Subreddits
 
-Your future app won’t use the same communities as Reddit, but we can expect similar categories—e.g., city groups, majors, sports fandoms, political affiliations.
+Your app won’t use Reddit’s categories, so we group communities into higher-level clusters (e.g., politics, hobbies, geography, lifestyle).
 
-Rather than focusing on individual subreddits, we examine **clusters** of related communities to understand broader structural patterns.
+This helps us understand structural causes of conflict that appear regardless of specific subreddit identities.
 
 ### Graphs
 
@@ -137,22 +161,45 @@ Rather than focusing on individual subreddits, we examine **clusters** of relate
     style="width:100%; height:70vh; border:none;">
 </iframe>
 
-Using this graph, we can identify the top five most problematic cluster pairs.  
-One potential intervention: **reduce or modify cross-cluster exposure** for community pairs that consistently generate toxicity.
+From this, we identify the top five conflict-heavy cluster pairs—the types of communities that most often clash:
+
+1. 
+
+2. 
+
+3. 
+
+4. 
+
+5. 
+
+A potential platform intervention:
+limit or reshape cross-cluster exposure for pairs that produce consistently toxic interactions.
 
 ---
 
 ## 4. Thematic Features: Is All Negativity the Same?
 
 Constructive disagreement is healthy; toxicity is not.  
+
 Research (from the original paper) suggests that even mildly negative crossposts can produce mini-echo chambers in the comment section.  
 
 So simply encouraging “idea exchange” isn’t enough.
 
-Linguistic profiling reveals strong thematic and emotional signatures across posts.
-Comment-level sentiment (e.g., VADER, LIWC) identifies the degree of hostility in negative crossposts.
+However, negativity is not monolithic.
+Some negative posts are:
 
-We should use these two to figure out what pairs of subreddit/cluster interactions are toxic and what aren't.
+- Sarcastic but constructive
+
+- Critical but thoughtful
+
+- Outright hostile
+
+- Coordinated attacks
+
+Using linguistic profiling (sentiment models, LIWC-style categories), we separate constructive disagreement from toxic confrontation.
+
+
 
 ### Graphs
 
@@ -169,19 +216,27 @@ We should use these two to figure out what pairs of subreddit/cluster interactio
 
 - **Graph 8 — Emotional + stylistic signatures by community cluster**
 
-Above, we have mapped out what kind of *emotional* and *stylistic* signatures conflicts in each cluster tend to have. Here, we see that the following clusters stand out:
 
-- **Cluster 7():** This cluster is high in anger, and swearing, which indicates a tendency for more unwanted conflicts
-- **Cluster 1():** This cluster is similar to cluster 7, containing high amounts of swearing and anger. Similarly, in the stylistic features we see a high portion of upper case letters used, which is common in long, angry posts which indicate 'rants'.
+From these, two clusters stand out as especially prone to toxic interactions:
 
+Cluster 7 — “Skepticism and Bad-X Critiques”
+Characterized by high anger, swearing, and hostile language
 
-We use Graphs 6 and 7 to identify which emotional or stylistic features distinguish constructive disagreements from toxic ones, helping determine which types of interactions should be encouraged vs limited. Ideally we end up with a couple of subreddits that perhaps need more moderation.
+Cluster 1 — “Reddit Meta and Drama”
+Exhibits similar patterns, with high caps usage (rant-style posts) and strong emotional volatility
+
+These clusters aren’t just negative—they have recognizably toxic linguistic signatures.
+
 
 ## 5. Manual moderation
 
-Leading in from the previous point, let us take the top 1 or two clusters in terms of negativety and check how negative they are. We can state that certain clusters, due to the amount of hostility in crossposts, require manual moderation. We aim to figure out what those clusters are. 
+Your analysis reveals three major insights for your hypothetical startup:
 
-(Note, the clusters we pick can be relatively arbritrary, we can just state that due to a certain shared feature such as a high emotional characteristic or volume of crossposts they need more moderation. The feature just need to be quantitative)
+Negativity is rare—but highly concentrate: focused moderation can have disproportionate impact.
+
+*A small core of communities drives most conflicts*: Community-level tools (not just individual-level) matter.
+
+*Not all negativity is harmful:* Emotional and stylistic features help distinguish critique from toxicity. As a result, we should focus on communities that frequency display these negative characteristics
 
 ---
 
