@@ -166,9 +166,10 @@ We should use these two to figure out what pairs of subreddit/cluster interactio
     src="/assets/data/website_figures/stylistic_profile_by_cluster.png"
     style="width:100%; height:70vh; border:none;">
 </iframe>
+
 - **Graph 8 — Emotional + stylistic signatures by community cluster**
 
-Above, we have mapped out what kidn of *emotional* and *stylistic* signatures conflicts in each cluster tend to have. Here, we see that the following clusters stand out:
+Above, we have mapped out what kind of *emotional* and *stylistic* signatures conflicts in each cluster tend to have. Here, we see that the following clusters stand out:
 
 - **Cluster 7():** This cluster is high in anger, and swearing, which indicates a tendency for more unwanted conflicts
 - **Cluster 1():** This cluster is similar to cluster 7, containing high amounts of swearing and anger. Similarly, in the stylistic features we see a high portion of upper case letters used, which is common in long, angry posts which indicate 'rants'.
