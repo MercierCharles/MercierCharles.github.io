@@ -139,6 +139,93 @@ Now that we've identified the communities consisting of our 'core' interactions,
     style="width:100%; height:70vh; border:none;">
 </iframe>
 
+#### Cluster-level drill-down
+
+Pick a cluster to inspect its interaction network, profile, and radar view. The three panels below switch automatically when you change the cluster number.
+
+<div id="cluster-details" class="cluster-details">
+  <label for="cluster-select" class="cluster-select-label">
+    Select a cluster:
+  </label>
+  <select id="cluster-select" class="cluster-select">
+    <option value="0">Cluster 0</option>
+    <option value="1">Cluster 1</option>
+    <option value="2">Cluster 2</option>
+    <option value="3">Cluster 3</option>
+    <option value="4">Cluster 4</option>
+    <option value="5">Cluster 5</option>
+    <option value="6">Cluster 6</option>
+    <option value="7">Cluster 7</option>
+    <option value="8">Cluster 8</option>
+    <option value="9">Cluster 9</option>
+    <option value="10">Cluster 10</option>
+    <option value="11">Cluster 11</option>
+    <option value="12">Cluster 12</option>
+    <option value="13">Cluster 13</option>
+    <option value="14">Cluster 14</option>
+    <option value="15">Cluster 15</option>
+    <option value="16">Cluster 16</option>
+    <option value="17">Cluster 17</option>
+    <option value="18">Cluster 18</option>
+    <option value="19">Cluster 19</option>
+  </select>
+
+  <div class="cluster-panels">
+    <div class="cluster-panel">
+      <div class="cluster-panel-title">Interaction network</div>
+      <iframe
+        id="cluster-network"
+        src="/assets/data/website_figures/clusters_details/cluster_0_network.html"
+        loading="lazy"
+        style="width:100%; height:60vh; border:none;"
+      ></iframe>
+    </div>
+    <div class="cluster-panel">
+      <div class="cluster-panel-title">Linguistic profile</div>
+      <iframe
+        id="cluster-profile"
+        src="/assets/data/website_figures/clusters_details/cluster_0_profile.html"
+        loading="lazy"
+        style="width:100%; height:60vh; border:none;"
+      ></iframe>
+    </div>
+    <div class="cluster-panel">
+      <div class="cluster-panel-title">Thematic radar</div>
+      <iframe
+        id="cluster-radar"
+        src="/assets/data/website_figures/clusters_details/cluster_0_radar.html"
+        loading="lazy"
+        style="width:100%; height:60vh; border:none;"
+      ></iframe>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  const select = document.getElementById("cluster-select");
+  const frames = {
+    network: document.getElementById("cluster-network"),
+    profile: document.getElementById("cluster-profile"),
+    radar: document.getElementById("cluster-radar"),
+  };
+
+  function updateCluster(clusterId) {
+    const base =
+      "/assets/data/website_figures/clusters_details/cluster_" + clusterId + "_";
+    frames.network.src = base + "network.html";
+    frames.profile.src = base + "profile.html";
+    frames.radar.src = base + "radar.html";
+  }
+
+  select.addEventListener("change", function(e) {
+    updateCluster(e.target.value);
+  });
+
+  updateCluster(select.value);
+})();
+</script>
+
 From this, we identify the top five conflict-heavy cluster pairs—the types of communities that most often clash:
 
 1. 
@@ -180,8 +267,18 @@ Using linguistic profiling (sentiment models, LIWC-style categories), we look at
 
 ### Graphs
 
-![a](/assets/images/emotional_profile_by_cluster.png)
-![a](/assets/images/stylistic_profile_by_cluster.png)
+- **Graph 6 — Emotional profile of positive vs negative posts**
+![Negative posts per subreddit](/assets/data/images/emotional_profile_by_cluster.png)
+
+- **Graph 7 — Stylistic profile of positive vs negative posts**
+![Negative posts per subreddit](/assets/data/images/stylistic_profile_by_cluster.png)
+
+<iframe 
+    src="/assets/images/stylistic_profile_by_cluster.png"
+    style="width:100%; height:70vh; border:none;">
+</iframe>
+
+- **Graph 8 — Emotional + stylistic signatures by community cluster**
 
 From these, two clusters stand out as especially prone to toxic interactions:
 
@@ -195,7 +292,90 @@ These clusters aren’t just negative—they have recognizably toxic linguistic 
 
 So what does this mean in terms of moderation? This information tells us that we want to focus manual moderation, a limited resource, into communities in the same types as cluster 1 and cluster 7. By focusing on these specific clusters, we can ensure that our limited resource of moderation manpower can be applied in places where it is most effecting.
 
-## 5. Some good news: metrics over time
+## 5. The Solution: The Moderation Matrix
+
+We have identified who fights (the clusters) and how they fight (the linguistic profile). Now, the final question for our startup is: How do we fix it without going bankrupt?
+
+Hiring human moderators is expensive. AI moderation is cheap but struggles with nuance. To solve this, we developed the Moderation Matrix (Graph 9) to prioritize resources based on two factors: Scale (Interaction Volume) and Risk (Toxicity Ratio).
+
+- **Graph 9 — The Moderation Matrix**
+<iframe 
+    src="/assets/data/website_figures/graph_9_moderation_matrix.html"
+    style="width:100%; height:70vh; border:none;">
+</iframe>
+
+Graph 9 confirms that toxicity follows a strict Pareto Principle (80/20 rule). A tiny fraction of communities creates the vast majority of our problems. By plotting our communities on this Log-Log scale, distinct strategies emerge for different quadrants:
+
+- **The "Kill Zone" (Top Right):**
+
+    - Characteristics: High Volume, High Toxicity.
+    - Example: Cluster 61. This cluster is massive and consistently hostile.
+    - Strategy: Manual Moderation Required. This is where we burn our budget. These communities are too large to ignore and too nuanced for AI to catch every dog-whistle. Human intervention is mandatory here to prevent site-wide contamination.
+
+- **Niche Hate (Top Left):**
+
+    - Characteristics: Low Volume, High Toxicity.
+    - Strategy: Automated Flagging. These are small, isolated pockets of negativity. Because they don't drive massive traffic, we can aggressively use strict AI keyword filters. If we accidentally ban a false positive here, the impact on the platform's overall growth is minimal compared to the "Kill Zone."
+
+- **Healthy Viral (Bottom Right):**
+
+    - Characteristics: Massive Volume, Low Toxicity.
+    - Example: Cluster 593.
+    - Strategy: Self-Regulation. These communities are the "Golden Geese." They are huge and active but remain civil. We should do nothing here. Heavy-handed moderation would only stifle their growth. Let the community downvote buttons do the work.
+
+The Startup Takeaway: Don't try to moderate the whole internet. Ignore the bottom-right, automate the top-left, and send your human team into the top-right Kill Zone.
+
+## 6. Timing is Everything: The "Viral Outrage"
+
+Finally, we must understand when to deploy these resources. Is toxicity a constant background hum, or does it strike like lightning?
+
+We analyzed the volume of interactions over time, stacking positive exchanges against toxic conflict.
+
+- **Graph 1b — The "Viral Outrage" Timeline**
+<iframe 
+    src="/assets/data/website_figures/graph_1b_viral_outrage.html"
+    style="width:100%; height:70vh; border:none;">
+</iframe>
+
+The data refutes the idea that "internet trolls are always on." Conflict is not a flat line; it is bursty and follows a pattern of Volatility Clustering.
+
+- **The Baseline**: For most of the timeline (green area), the platform is overwhelmingly positive.
+- **The Spikes**: Look at the "Peak Volatility" on the far right. We see sudden, sharp expansions in the red area (toxic conflict).
+
+What causes these bursts? These spikes usually correlate with external real-world events (elections, scandals, viral news). When these events hit, the "Kill Zone" communities identified above flare up simultaneously.
+
+The Operational Lesson: We don't need a massive standing army of moderators 24/7. Instead, we need Surge Capacity. Our system needs to detect the initial slope of a "red spike" (as seen in late 2017) and dynamically scale server costs only when the alarm sounds.
+
+## 7. The Algorithm: From Reaction to Prediction
+
+Descriptive graphs are useful, but to build a scalable platform, we need predictive metrics. We don't just want to watch the house burn; we want to catch the spark.
+
+To do this, we treat toxicity not as "bad behavior," but as a virus.
+
+### The "Toxicity R₀" (Viral Coefficient)
+
+In epidemiology, R₀ represents the reproduction number of a virus—how many people one infected person will infect. We applied this same logic to our community clusters.
+
+We define the Viral Toxicity Coefficient (R₀) as:
+
+$$R_0 = \frac{\text{Rate of moderation \& deletion}}{\text{Rate of new toxic replies}}$$
+
+This formula gives us a binary decision matrix for our automated systems:
+
+- **If R₀ < 1 (Decay)**: The conflict is dying out naturally. Even if the volume is high (like in Cluster 593), intervention is unnecessary. The community's immune system is working.
+- **If R₀ > 1 (Growth)**: The toxicity is self-sustaining and expanding. This triggers an immediate alert to the "Kill Zone" moderators.
+
+### Mapping the Contagion Vectors
+
+Finally, we asked: How does the infection escape the Kill Zone?
+
+If the toxic "Cluster 61" was isolated, we could simply ban it. However, our network analysis reveals a more dangerous structure: Bridge Communities.
+
+We found that mid-sized clusters (like Cluster 48) often act as "Vectors." They do not originate the hate, but they import memes and language from the Kill Zone and sanitize them for the mainstream.
+
+The Strategy: To stop the spread, we don't just police the source (Red nodes) or protect the victims (Green nodes). We cut the bridges. By strictly moderating crossposts passing through "Vector" communities, we break the chain of transmission (R₀) before it reaches the healthy viral clusters.
+
+## 8. Some good news: metrics over time
 
 In our previous analysis, we determined that the toxicity on Reddit is mainly driven by a few communities.
 This is good news as moderating a few toxic communities is much easier than moderating the whole website.
@@ -243,7 +423,7 @@ Let's now make a graph of our own to find out the few negative interactions are 
 We can see that most communities are in the lower half, and that there are a few clusters in the upper parts of the graph. This is excellent news, as this means that we can focus our moderating efforts on those "toxicity prone" communities and thus curb the general toxicity on Reddit!
 
 
-## 5. Final Lessons
+## 9. Final Lessons
 
 Your analysis reveals three major insights for your hypothetical startup:
 
@@ -261,6 +441,41 @@ Negativity is rare—but highly concentrate: focused moderation can have disprop
   width: min(66.6667vw, 1200px);
   margin: 0 auto;
   padding: 0 2rem;
+}
+
+.cluster-details {
+  margin: 1.5rem 0 2rem;
+}
+
+.cluster-select-label {
+  font-weight: 600;
+  margin-right: 0.5rem;
+}
+
+.cluster-select {
+  padding: 0.35rem 0.65rem;
+  border-radius: 6px;
+  border: 1px solid #d0d7de;
+  background: #fff;
+}
+
+.cluster-panels {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.cluster-panel {
+  background: #f8f9fa;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 0.75rem;
+}
+
+.cluster-panel-title {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
 }
 
 @media (max-width: 960px) {
