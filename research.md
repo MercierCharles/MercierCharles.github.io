@@ -228,19 +228,8 @@ Exhibits similar patterns, with high caps usage (rant-style posts) and strong em
 These clusters aren’t just negative—they have recognizably toxic linguistic signatures.
 
 
-## 5. Manual moderation
 
-Your analysis reveals three major insights for your hypothetical startup:
-
-Negativity is rare—but highly concentrate: focused moderation can have disproportionate impact.
-
-*A small core of communities drives most conflicts*: Community-level tools (not just individual-level) matter.
-
-*Not all negativity is harmful:* Emotional and stylistic features help distinguish critique from toxicity. As a result, we should focus on communities that frequency display these negative characteristics
-
----
-
-## 6. Some good news: metrics over time
+## 5. Some good news: metrics over time
 
 In our previous analysis, we determined that the toxicity on Reddit is mainly driven by a few communities.
 This is good news as moderating a few toxic communities is much easier than moderating the whole website.
@@ -287,12 +276,17 @@ Let's now make a graph of our own to find out the few negative interactions are 
 We can see that most communities are in the lower half, and that there are a few clusters in the upper parts of the graph. This is excellent news, as this means that we can focus our moderating efforts on those "toxicity prone" communities and thus curb the general toxicity on Reddit!
 
 
-## 7. Lessons for Your Genius Multi-Billion-Dollar App Idea
+## 5. Final Lessons
 
-* Reduce contact between clusters that consistently generate toxic interactions.  
-* Maintain or increase interaction between clusters that tend to have productive, non-toxic debates.  
-* Flag or manually monitor particularly problematic communities to stop toxicity before it escalates.
+Your analysis reveals three major insights for your hypothetical startup:
 
+Negativity is rare—but highly concentrate: focused moderation can have disproportionate impact.
+
+*A small core of communities drives most conflicts*: Community-level tools (not just individual-level) matter.
+
+*Not all negativity is harmful:* Emotional and stylistic features help distinguish critique from toxicity. As a result, we should focus on communities that frequency display these negative characteristics
+
+---
 </div>
 
 <style>
