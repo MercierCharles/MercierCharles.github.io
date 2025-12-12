@@ -40,7 +40,7 @@ We begin with a global picture of tone across posts.
 
 ![Overall tone](/assets/images/global_tone.png)
 
-Surprisingly, we notice something that is rather encouraging. encouraging:
+Surprisingly, we notice something that is rather encouraging:
 
 **Negativey is the exception, not the norm**
 
