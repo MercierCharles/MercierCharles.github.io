@@ -4,6 +4,7 @@ title: Data Analysis Research
 subtitle: Exploring patterns and insights through data visualization
 permalink: /
 full-width: true
+mathjax: true
 ext-js:
   - href: "https://cdn.plot.ly/plotly-2.27.0.min.js"
 ---
@@ -303,57 +304,61 @@ On the other hand, users from Clusters 7 and 1 are more likely to create comment
 
 ## 5. The Solution: The Moderation Matrix
 
-We have identified who fights (the clusters) and how they fight (the linguistic profile). Now, the final question for our startup is: How do we fix it without going bankrupt?
+We have identified who fights (the clusters) and how they fight (the linguistic profile). Now, the final question for our startup is: **How do we fix it without going bankrupt?**
 
-Hiring human moderators is expensive. AI moderation is cheap but struggles with nuance. To solve this, we developed the Moderation Matrix (Graph 9) to prioritize resources based on two factors: Scale (Interaction Volume) and Risk (Toxicity Ratio).
+Hiring human moderators is expensive, while AI moderation is cheap but struggles with nuance. To solve this, we developed the **Moderation Matrix (Graph 9)** to prioritize resources based on two factors: **Scale** (Interaction Volume) and **Risk** (Toxicity Ratio).
 
-- **Graph 9 — The Moderation Matrix**
+### Graph 9 — The Moderation Matrix
+
 <iframe 
     src="/assets/data/website_figures/graph_9_moderation_matrix.html"
     style="width:100%; height:70vh; border:none;">
 </iframe>
 
-Graph 9 confirms that toxicity follows a strict Pareto Principle (80/20 rule). A tiny fraction of communities creates the vast majority of our problems. By plotting our communities on this Log-Log scale, distinct strategies emerge for different quadrants:
+Graph 9 confirms that toxicity follows a strict Pareto Principle (80/20 rule). A tiny fraction of communities creates the vast majority of our problems. By plotting our 20 communities on this Log-Log scale, distinct strategies emerge for different quadrants:
 
-- **The "Kill Zone" (Top Right):**
+* **The "Kill Zone" (Top Right)**
+    * **Characteristics:** High Volume, High Toxicity.
+    * **Example:** **Politics, Ideologies, and Conspiracies (Cluster 6)**. This cluster is massive and consistently hostile.
+    * **Strategy:** **Manual Moderation Required.** This is where we burn our budget. These communities are too large to ignore and too nuanced for AI to catch every dog-whistle. Human intervention is mandatory here to prevent site-wide contamination.
 
-    - Characteristics: High Volume, High Toxicity.
-    - Example: Cluster 61. This cluster is massive and consistently hostile.
-    - Strategy: Manual Moderation Required. This is where we burn our budget. These communities are too large to ignore and too nuanced for AI to catch every dog-whistle. Human intervention is mandatory here to prevent site-wide contamination.
+* **Niche Hate (Top Left)**
+    * **Characteristics:** Low Volume, High Toxicity.
+    * **Example:** **Meta-Politics and Watchdog Communities (Cluster 11)**.
+    * **Strategy:** **Automated Flagging.** These are small, isolated pockets of negativity. Because they don't drive massive traffic, we can aggressively use strict AI keyword filters. If we accidentally ban a false positive here, the impact on the platform's overall growth is minimal compared to the "Kill Zone".
 
-- **Niche Hate (Top Left):**
+* **Healthy Viral (Bottom Right)**
+    * **Characteristics:** Massive Volume, Low Toxicity.
+    * **Example:** **Memes and Entertainment (Cluster 15)**.
+    * **Strategy:** **Self-Regulation.** These communities are the "Golden Geese". They are huge and active but remain civil. We should do nothing here; heavy-handed moderation would only stifle their growth. Let the community downvote buttons do the work.
 
-    - Characteristics: Low Volume, High Toxicity.
-    - Strategy: Automated Flagging. These are small, isolated pockets of negativity. Because they don't drive massive traffic, we can aggressively use strict AI keyword filters. If we accidentally ban a false positive here, the impact on the platform's overall growth is minimal compared to the "Kill Zone."
+**The Startup Takeaway:** Don't try to moderate the whole internet. Ignore the bottom-right, automate the top-left, and send your human team into the top-right Kill Zone.
 
-- **Healthy Viral (Bottom Right):**
-
-    - Characteristics: Massive Volume, Low Toxicity.
-    - Example: Cluster 593.
-    - Strategy: Self-Regulation. These communities are the "Golden Geese." They are huge and active but remain civil. We should do nothing here. Heavy-handed moderation would only stifle their growth. Let the community downvote buttons do the work.
-
-The Startup Takeaway: Don't try to moderate the whole internet. Ignore the bottom-right, automate the top-left, and send your human team into the top-right Kill Zone.
+---
 
 ## 6. Timing is Everything: The "Viral Outrage"
 
-Finally, we must understand when to deploy these resources. Is toxicity a constant background hum, or does it strike like lightning?
+Finally, we must understand *when* to deploy these resources. Is toxicity a constant background hum, or does it strike like lightning?
 
 We analyzed the volume of interactions over time, stacking positive exchanges against toxic conflict.
 
-- **Graph 1b — The "Viral Outrage" Timeline**
+### Graph 1b — The "Viral Outrage" Timeline
+
 <iframe 
     src="/assets/data/website_figures/graph_1b_viral_outrage.html"
     style="width:100%; height:70vh; border:none;">
 </iframe>
 
-The data refutes the idea that "internet trolls are always on." Conflict is not a flat line; it is bursty and follows a pattern of Volatility Clustering.
+The data refutes the idea that "internet trolls are always on". Conflict is not a flat line; it is bursty and follows a pattern of **Volatility Clustering**.
 
-- **The Baseline**: For most of the timeline (green area), the platform is overwhelmingly positive.
-- **The Spikes**: Look at the "Peak Volatility" on the far right. We see sudden, sharp expansions in the red area (toxic conflict).
+* **The Baseline:** For most of the timeline (green area), the platform is overwhelmingly positive.
+* **The Spikes:** Look at the "Peak Volatility" on the far right. We see sudden, sharp expansions in the red area (toxic conflict).
 
-What causes these bursts? These spikes usually correlate with external real-world events (elections, scandals, viral news). When these events hit, the "Kill Zone" communities identified above flare up simultaneously.
+**What causes these bursts?** These spikes usually correlate with external real-world events (elections, scandals, viral news). When these events hit, the "Kill Zone" communities identified above flare up simultaneously.
 
-The Operational Lesson: We don't need a massive standing army of moderators 24/7. Instead, we need Surge Capacity. Our system needs to detect the initial slope of a "red spike" (as seen in late 2017) and dynamically scale server costs only when the alarm sounds.
+**The Operational Lesson:** We don't need a massive standing army of moderators 24/7. Instead, we need **Surge Capacity**. Our system needs to detect the initial slope of a "red spike" (as seen in late 2017) and dynamically scale server costs only when the alarm sounds.
+
+---
 
 ## 7. The Algorithm: From Reaction to Prediction
 
@@ -361,28 +366,30 @@ Descriptive graphs are useful, but to build a scalable platform, we need predict
 
 To do this, we treat toxicity not as "bad behavior," but as a virus.
 
-### The "Toxicity R₀" (Viral Coefficient)
+#### The "Toxicity $R_0$" (Viral Coefficient)
 
-In epidemiology, R₀ represents the reproduction number of a virus—how many people one infected person will infect. We applied this same logic to our community clusters.
+In epidemiology, $R_0$ represents the reproduction number of a virus—how many people one infected person will infect. We applied this same logic to our community clusters.
 
-We define the Viral Toxicity Coefficient (R₀) as:
+We define the **Viral Toxicity Coefficient ($R_0$)** as:
 
-$$R_0 = \frac{\text{Rate of moderation \& deletion}}{\text{Rate of new toxic replies}}$$
+$$R_0 = \frac{\text{Rate of new toxic replies}}{\text{Rate of moderation and deletion}}$$
+
+*(Note: The formula logic is inverted from standard removal rates to reflect viral growth potential, or strictly as defined in your heuristic)*
 
 This formula gives us a binary decision matrix for our automated systems:
 
-- **If R₀ < 1 (Decay)**: The conflict is dying out naturally. Even if the volume is high (like in Cluster 593), intervention is unnecessary. The community's immune system is working.
-- **If R₀ > 1 (Growth)**: The toxicity is self-sustaining and expanding. This triggers an immediate alert to the "Kill Zone" moderators.
+* **If $R_0 < 1$ (Decay):** The conflict is dying out naturally. Even if the volume is high (like in **Memes and Entertainment (Cluster 15)**), intervention is unnecessary. The community's immune system is working.
+* **If $R_0 > 1$ (Growth):** The toxicity is self-sustaining and expanding. This triggers an immediate alert to the "Kill Zone" moderators.
 
-### Mapping the Contagion Vectors
+#### Mapping the Contagion Vectors
 
-Finally, we asked: How does the infection escape the Kill Zone?
+Finally, we asked: **How does the infection escape the Kill Zone?**
 
-If the toxic "Cluster 61" was isolated, we could simply ban it. However, our network analysis reveals a more dangerous structure: Bridge Communities.
+If the toxic **Politics, Ideologies, and Conspiracies (Cluster 6)** was isolated, we could simply ban it. However, our network analysis reveals a more dangerous structure: **Bridge Communities**.
 
-We found that mid-sized clusters (like Cluster 48) often act as "Vectors." They do not originate the hate, but they import memes and language from the Kill Zone and sanitize them for the mainstream.
+We found that mid-sized clusters—specifically **Reddit Meta and Drama (Cluster 1)**—often act as "Vectors". They do not originate the hate, but they import memes and language from the Kill Zone and sanitize them for the mainstream.
 
-The Strategy: To stop the spread, we don't just police the source (Red nodes) or protect the victims (Green nodes). We cut the bridges. By strictly moderating crossposts passing through "Vector" communities, we break the chain of transmission (R₀) before it reaches the healthy viral clusters.
+**The Strategy:** To stop the spread, we don't just police the source (Red nodes) or protect the victims (Green nodes). **We cut the bridges.** By strictly moderating crossposts passing through "Vector" communities, we break the chain of transmission ($R_0$) before it reaches the healthy viral clusters.
 
 ## 8. Some good news: metrics over time
 
