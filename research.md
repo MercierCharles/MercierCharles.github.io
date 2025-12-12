@@ -175,25 +175,13 @@ Some negative posts are:
 
 - Coordinated attacks
 
-Using linguistic profiling (sentiment models, LIWC-style categories), we separate constructive disagreement from toxic confrontation.
-
+Using linguistic profiling (sentiment models, LIWC-style categories), we look at the average textual features in each cluster's negative posts. Our aim is to identify which clusters express negativety as critical, constructive arguments, and which clusters express it as hostility and personal attacks.
 
 
 ### Graphs
 
-- **Graph 6 — Emotional profile of positive vs negative posts**
-![Negative posts per subreddit](/assets/data/website_figures/emotional_profile_by_cluster.png)
-
-- **Graph 7 — Stylistic profile of positive vs negative posts**
-![Negative posts per subreddit](/assets/data/website_figures/stylistic_profile_by_cluster.png)
-
-<iframe 
-    src="/assets/data/website_figures/stylistic_profile_by_cluster.png"
-    style="width:100%; height:70vh; border:none;">
-</iframe>
-
-- **Graph 8 — Emotional + stylistic signatures by community cluster**
-
+![Negative posts per subreddit](/assets/data/images/emotional_profile_by_cluster.png)
+![Negative posts per subreddit](/assets/data/images/stylistic_profile_by_cluster.png)
 
 From these, two clusters stand out as especially prone to toxic interactions:
 
