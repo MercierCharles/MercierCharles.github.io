@@ -263,12 +263,83 @@ Using linguistic profiling (sentiment models, LIWC-style categories), we can loo
 ![Negative posts per subreddit](/assets/data/images/emotional_profile_by_cluster.png)
 
 - **Graph 7 — Stylistic profile of positive vs negative posts**
-![Negative posts per subreddit](/assets/data/images/stylistic_profile_by_cluster.png)
+#### Cluster-level drill-down
 
-<iframe 
-    src="/assets/images/stylistic_profile_by_cluster.png"
-    style="width:100%; height:70vh; border:none;">
-</iframe>
+Pick a cluster to inspect its interaction network, profile, and radar view. The three panels below switch automatically when you change the cluster number.
+
+<div id="cluster-details" class="cluster-details">
+  <label for="cluster-select" class="cluster-select-label">
+    Select a cluster:
+  </label>
+  <select id="cluster-select" class="cluster-select">
+    <option value="0">Cluster 0</option>
+    <option value="1">Cluster 1</option>
+    <option value="2">Cluster 2</option>
+    <option value="3">Cluster 3</option>
+    <option value="4">Cluster 4</option>
+    <option value="5">Cluster 5</option>
+    <option value="6">Cluster 6</option>
+    <option value="7">Cluster 7</option>
+    <option value="8">Cluster 8</option>
+    <option value="9">Cluster 9</option>
+    <option value="10">Cluster 10</option>
+    <option value="11">Cluster 11</option>
+    <option value="12">Cluster 12</option>
+    <option value="13">Cluster 13</option>
+    <option value="14">Cluster 14</option>
+    <option value="15">Cluster 15</option>
+    <option value="16">Cluster 16</option>
+    <option value="17">Cluster 17</option>
+    <option value="18">Cluster 18</option>
+    <option value="19">Cluster 19</option>
+  </select>
+
+  <div class="cluster-panels">
+    <div class="cluster-panel">
+      <div class="cluster-panel-title">Linguistic profile</div>
+      <iframe
+        id="cluster-profile"
+        src="/assets/data/website_figures/clusters_details/cluster_0_profile.html"
+        loading="lazy"
+        style="width:100%; height:60vh; border:none;"
+      ></iframe>
+    </div>
+    <div class="cluster-panel">
+      <div class="cluster-panel-title">Thematic radar</div>
+      <iframe
+        id="cluster-radar"
+        src="/assets/data/website_figures/clusters_details/cluster_0_radar.html"
+        loading="lazy"
+        style="width:100%; height:60vh; border:none;"
+      ></iframe>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  const select = document.getElementById("cluster-select");
+  const frames = {
+    network: document.getElementById("cluster-network"),
+    profile: document.getElementById("cluster-profile"),
+    radar: document.getElementById("cluster-radar"),
+  };
+
+  function updateCluster(clusterId) {
+    const base =
+      "/assets/data/website_figures/clusters_details/cluster_" + clusterId + "_";
+    frames.network.src = base + "network.html";
+    frames.profile.src = base + "profile.html";
+    frames.radar.src = base + "radar.html";
+  }
+
+  select.addEventListener("change", function(e) {
+    updateCluster(e.target.value);
+  });
+
+  updateCluster(select.value);
+})();
+</script>
 
 - **Graph 8 — Emotional + stylistic signatures by community cluster**
 
