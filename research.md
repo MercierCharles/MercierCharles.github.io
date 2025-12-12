@@ -61,7 +61,7 @@ Furthermore, by visualizing the number of negative posts per community, we can n
 
 ![Bar negative block](/assets/images/bar_negative_block.png)
 
-For moderation, this is encouraging. 
+For moderation, this is encouraging! 
 
 If a small cluster is responsible for most negative interactions, targeted interventions could be extremely effective. Even minimal moderation has the potential to have a strong impact on ensuring that our new app doesn't fall into the same patterns of toxicity as Reddit.
 
@@ -180,8 +180,8 @@ Using linguistic profiling (sentiment models, LIWC-style categories), we look at
 
 ### Graphs
 
-![Negative posts per subreddit](/assets/images/emotional_profile_by_cluster.png)
-![Negative posts per subreddit](/assets/images/stylistic_profile_by_cluster.png)
+![Emotional Profile of Negative Posts by Cluster](/assets/images/emotional_profile_by_cluster.png)
+![Stylistic Profile of Negative Posts by Cluster](/assets/images/stylistic_profile_by_cluster.png)
 
 From these, two clusters stand out as especially prone to toxic interactions:
 
