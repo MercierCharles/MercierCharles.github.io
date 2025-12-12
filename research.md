@@ -173,15 +173,6 @@ Pick a cluster to inspect its interaction network, profile, and radar view. The 
 
   <div class="cluster-panels">
     <div class="cluster-panel">
-      <div class="cluster-panel-title">Interaction network</div>
-      <iframe
-        id="cluster-network"
-        src="/assets/data/website_figures/clusters_details/cluster_0_network.html"
-        loading="lazy"
-        style="width:100%; height:60vh; border:none;"
-      ></iframe>
-    </div>
-    <div class="cluster-panel">
       <div class="cluster-panel-title">Linguistic profile</div>
       <iframe
         id="cluster-profile"
