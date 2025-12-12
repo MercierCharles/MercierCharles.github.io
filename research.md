@@ -141,31 +141,31 @@ Now that we've identified the communities consisting of our 'core' interactions,
 
 From this, we identify the top five conflict-heavy cluster pairs—the types of communities that most often clash:
 
-1. 
+1. (Personal advice ⟺ Politics, Ideology, and Conspiracies)
 
-2. 
+2. (Core Gaming ⟺ Technology and Programming)
 
-3. 
+3. (Personal advice ⟺ Reddit Meta and Drama)
 
-4. 
+4. (News, Politics, and World Regions ⟺ Politics, Ideology, and Conspiracies)
 
-5. 
+5. (Memes and Entertainment ⟺ Skepticism and Bad-X Critiques)
 
-A potential platform intervention:
-limit or reshape cross-cluster exposure for pairs that produce consistently toxic interactions.
+Now that we have a way to identify which clusters are most likely to come into conflict, how can we act on it? One approach is to adapt our recommendation algorithm. In particular, we can reduce the visibility of posts from clusters that a user’s home cluster tends to react negatively to, ensuring that users are less frequently exposed to communities with which they historically clash.
+
+In effect, this serves to limit cross-cluster exposure for pairs that produce consistently toxic interactions. There is one signficiant downside to this however - the creation of echo chambers. It's known that when users are surrounded by those who share their own views, this creates 'echo chambers', or communities where extreme views tend to be amplified without being tempered by conflicting opinions. This concern leads us to our next section.
 
 ---
 
 ## 4. Thematic Features: Is All Negativity the Same?
 
-Constructive disagreement is healthy; toxicity is not.  
 
-Research (from the original paper) suggests that even mildly negative crossposts can produce mini-echo chambers in the comment section.  
+We know that constructive disagreement is healthy. It avoids the creation of these so called echo chambers. On the other hand, toxic arguments are **not** healthy.  
 
-So simply encouraging “idea exchange” isn’t enough.
+Research (from the original paper) suggests that even mildly negative crossposts can produce mini-echo chambers in the comment section. So unless we encourage the right type of cross community interactions, there's a strong chance we're only reinforcing the creation of these mini-echo chambers. 
 
-However, negativity is not monolithic.
-Some negative posts are:
+
+Lucky for us, negativity is not monolithic. We have several different types of negative comments such as:
 
 - Sarcastic but constructive
 
@@ -175,7 +175,7 @@ Some negative posts are:
 
 - Coordinated attacks
 
-Using linguistic profiling (sentiment models, LIWC-style categories), we look at the average textual features in each cluster's negative posts. Our aim is to identify which clusters express negativety as critical, constructive arguments, and which clusters express it as hostility and personal attacks.
+Using linguistic profiling (sentiment models, LIWC-style categories), we can look at the average textual features in each cluster's negative posts. Our aim is to identify which clusters express negativety as critical, constructive arguments, and which clusters express it as hostility and personal attacks.
 
 
 ### Graphs
@@ -191,9 +191,14 @@ Characterized by high anger, swearing, and hostile language
 Cluster 1 — “Reddit Meta and Drama”
 Exhibits similar patterns, with high caps usage (rant-style posts) and strong emotional volatility
 
-These clusters aren’t just negative—they have recognizably toxic linguistic signatures.
+These clusters aren’t just negative—they have recognizably toxic linguistic signatures. On the other hand, a few clusters stand on the opposite side of the spectrum:
 
-So what does this mean in terms of moderation? This information tells us that we want to focus manual moderation, a limited resource, into communities in the same types as cluster 1 and cluster 7. By focusing on these specific clusters, we can ensure that our limited resource of moderation manpower can be applied in places where it is most effecting.
+Cluster —
+Cluster — 
+
+ What does this tell us in terms of our new app?
+
+It suggests that manual moderation—a limited resource—should be concentrated on communities resembling clusters 1 and 7. Targeting these clusters allows us to deploy our moderation efforts where they will have the greatest impact.
 
 ## 5. Some good news: metrics over time
 
