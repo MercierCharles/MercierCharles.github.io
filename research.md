@@ -180,8 +180,8 @@ Using linguistic profiling (sentiment models, LIWC-style categories), we look at
 
 ### Graphs
 
-![Negative posts per subreddit](/assets/data/images/emotional_profile_by_cluster.png)
-![Negative posts per subreddit](/assets/data/images/stylistic_profile_by_cluster.png)
+![Negative posts per subreddit](/assets/images/emotional_profile_by_cluster.png)
+![Negative posts per subreddit](/assets/images/stylistic_profile_by_cluster.png)
 
 From these, two clusters stand out as especially prone to toxic interactions:
 
@@ -202,7 +202,8 @@ This is good news as moderating a few toxic communities is much easier than mode
 
 Let's take another angle, that of the evolution over time of the toxic interactions: is it getting better or worse?
 
-This is an interesting question as we want to develop our own social media website, and seeing how reddit's decentralized moderation system works will help us to determine if we use a similar system or not.
+Answering this question would allow us to understand whether we need to take more drastic steps to address the possible spread of toxicity in our app.
+
 
 Since we now are a veteran of ADA's methodology, let's first take a look at how the network evolves over time before making any hasty conclusions!
 
