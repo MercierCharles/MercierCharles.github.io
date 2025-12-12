@@ -44,7 +44,8 @@ Surprisingly, we notice something that is rather encouraging:
 
 **Negativey is the exception, not the norm**
 
-The majority of posts are either positive or neutral (90.3%), and only 9.7% are negative.
+The majority of posts are either positive (90.3%), and only 9.7% are negative.
+
 
 However, exceptions do matter. Even a relatively small group of negative posts tend to have a large impact on the general athmosphere of social media. Our goal therefore is to understand this 9.7% more.
 
@@ -54,16 +55,21 @@ we rank the subreddits by how many negative posts they send (from most to least)
 ![Negative posts per subreddit](/assets/images/negative_subreddit.png)
 
 We recognize a well-known distribution: a heavy-tailed distribution.
-This means that a small portion of subreddits concentrate a very large number of negative posts, while the vast majority of subreddits post very few.
+This means that a small portion of subreddits contribute to a very large number of negative posts, while the vast majority of subreddits post very few.
+
+Furthermore, by visualizing the number of negative posts per community, we can notice this more concretely. Only 43 out of 2086 communities have more than 5 negative posts!
+
+![Bar negative block](/assets/images/bar_negative_block.png)
 
 For moderation, this is encouraging. 
+
 If a small cluster is responsible for most negative interactions, targeted interventions could be extremely effective. Even minimal moderation has the potential to have a strong impact on ensuring that our new app doesn't fall into the same patterns of toxicity as Reddit.
 
 ## 2. From individual subreddits to communities
 
 We now know that negativity is concentrated in a small number of subreddits.
 
-But working only at the level of individual subreddits becomes quickly complicated. Additionally, our app isn't going to be a simple copy of reddit. We will likely have *similar* communities, but it's extremeley unlikely that they will end up being the exact same. 
+But working only at the level of individual subreddits becomes quickly complicated. Reddit has tens of thousands of subreddit, and looking at these individual subreddits one by one would take months. Furthermore, we're looking for general trends we can learn from. We don't care how a specific subreddit acts, but we do care how they tend to act as a whole.
 
 So what can we do?
 
@@ -89,12 +95,6 @@ If we were to use the full graph (with both positive and negative links) to clus
 However, what we want to see are the conflicts between communities.
 By focusing only on (G+), we amplify the network's affinity structure and then we can analyse how negative links circulate between these blocks to understand where the negativity lies.
 
-Now we have the communities, we can see the distribution of the number of negative posts but not per subreddits as before but per communities this time !
-
-![Bar negative block](/assets/images/bar_negative_block.png)
-
-As with the distribution of the number of negative posts per subreddit, a minority of communities are involved in the majority of negative interactions.
-Only 43 out of 2086 communities have more than 5 negative posts !
 
 It is still a bit abstract, though. To better understand how these communities relate to each other, we now visualize the **community network**:
 
@@ -124,34 +124,12 @@ We observe two main things:
 We can conclude that only these large online communities concentrate the majority of the negativity.
 This data supports our earlier observation about our moderation strategy: We should focus on a small core of large communities!
 
-Let's take a closer look at their posts:
-
----
-
-## 2. Interactions Between Specific Communities
-
-Now that we understand the global structure, we examine specific pairs of communities to illustrate how conflicts emerge.
-
-A directed crosspost-flow graph (subreddit → subreddit) shows that:
-
-- Some communities frequently receive negative crossposts from many sources
-
-- Others initiate negative interactions more than they receive
-
-- Some relationships are highly reciprocal, forming mini “feuds”
+So now, let's zoom into this core set of communities: 
 
 
-### Graphs
+## 3. Mapping interactions between high-use communities
 
-- **Graph 4 — Subreddit → Subreddit negative-weighted graph**
-
----
-
-## 3. Beyond Reddit: Generalizing Beyond Specific Subreddits
-
-Your app won’t use Reddit’s categories, so we group communities into higher-level clusters (e.g., politics, hobbies, geography, lifestyle).
-
-This helps us understand structural causes of conflict that appear regardless of specific subreddit identities.
+Now that we've identified the communities consisting of our 'core' interactions, let's pay attention to these higher-level clusters (e.g., politics, hobbies, geography, lifestyle). In the context of our app, we likely will not have any special communities that map to subreddits. For example, we may not have a community that corresponds to r/nfl or r/nba, but it is very likely that we will have groups of users that create sports communities. So by creating and understanding the interactions between these active high-level clusters, we can understand structural causes of conflict that appear regardless of specific subreddit identities.
 
 ### Graphs
 
