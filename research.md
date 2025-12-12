@@ -193,12 +193,16 @@ Exhibits similar patterns, with high caps usage (rant-style posts) and strong em
 
 These clusters aren’t just negative—they have recognizably toxic linguistic signatures. On the other hand, a few clusters stand on the opposite side of the spectrum:
 
-Cluster —
-Cluster — 
+Cluster 2 — "Personal Idea and Mental Health"
+Low Swearing, but high anxiety and sadness
 
- What does this tell us in terms of our new app?
+Cluster 12 — "Cities, Career, and Everyday Life 
 
-It suggests that manual moderation—a limited resource—should be concentrated on communities resembling clusters 1 and 7. Targeting these clusters allows us to deploy our moderation efforts where they will have the greatest impact.
+What does this tell us in terms of our new app?
+
+When adjusting our algorithm we want to ensure that users active in clusters such as 12 and 2 tend to see other communities more often since they are more likely to exhibit negativey in a healthier way.
+
+On the other hand, users from Clusters 7 and 1 are more likely to create comments that are angrier and more hostile. So like we mentioned in the previous section, it would be useful to prevent users from these communities from being shown posts from clusters they are likely to interact negatively with Additionally, targeting these clusters allows us to deploy our moderation efforts- a limited resource- where they will have the greatest impact.
 
 ## 5. Some good news: metrics over time
 
