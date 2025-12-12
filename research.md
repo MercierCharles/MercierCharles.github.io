@@ -193,7 +193,7 @@ Exhibits similar patterns, with high caps usage (rant-style posts) and strong em
 
 These clusters aren’t just negative—they have recognizably toxic linguistic signatures.
 
-
+So what does this mean in terms of moderation? This information tells us that we want to focus manual moderation, a limited resource, into communities in the same types as cluster 1 and cluster 7. By focusing on these specific clusters, we can ensure that our limited resource of moderation manpower can be applied in places where it is most effecting.
 
 ## 5. Some good news: metrics over time
 
