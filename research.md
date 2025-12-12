@@ -180,8 +180,8 @@ Using linguistic profiling (sentiment models, LIWC-style categories), we look at
 
 ### Graphs
 
-![Emotional Profile of Negative Posts by Cluster](/assets/images/emotional_profile_by_cluster.png)
-![Stylistic Profile of Negative Posts by Cluster](/assets/images/stylistic_profile_by_cluster.png)
+![a](/assets/images/emotional_profile_by_cluster.png)
+![a](/assets/images/stylistic_profile_by_cluster.png)
 
 From these, two clusters stand out as especially prone to toxic interactions:
 
