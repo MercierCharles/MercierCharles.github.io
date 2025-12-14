@@ -35,7 +35,7 @@ To answer these questions, you dig into crosspost data from Reddit—one of the 
 
 ---
 
-## 1.*How hostile are subreddit interactions, really?*
+## 1. *How hostile are subreddit interactions, really?*
 
 We begin with a global picture of tone across posts.
 
@@ -45,10 +45,10 @@ Surprisingly, we notice something that is rather encouraging:
 
 **Negativey is the exception, not the norm**
 
-The majority of posts are either positive (90.3%), and only 9.7% are negative.
+The majority of posts are either positive or neutral (90.3%), and only 9.7% are negative.
 
 
-However, exceptions do matter. Even a relatively small group of negative posts tend to have a large impact on the general athmosphere of social media. Our goal therefore is to understand this 9.7% more.
+However, exceptions do matter. Even a relatively small group of negative posts tend to have a large impact on the general atmosphere of social media. Our goal is therefore to better understand this 9.7%.
 
 
 To do this, we will look at the distribution of the number of negative posts per subreddit:
@@ -56,7 +56,7 @@ we rank the subreddits by how many negative posts they send (from most to least)
 ![Negative posts per subreddit](/assets/images/negative_subreddit.png)
 
 We recognize a well-known distribution: a heavy-tailed distribution.
-This means that a small portion of subreddits contribute to a very large number of negative posts, while the vast majority of subreddits post very few.
+This means that a small portion of subreddits accounts for a very large number of negative posts, while the vast majority produce very few.
 
 Furthermore, by visualizing the number of negative posts per community, we can notice this more concretely. Only 43 out of 2086 communities have more than 5 negative posts!
 
