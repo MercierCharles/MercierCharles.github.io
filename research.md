@@ -33,7 +33,16 @@ Before you repeat their mistakes, you need to understand:
 
 To answer these questions, you dig into crosspost data from Reddit—one of the most complex ecosystems of online communities.
 
+
 ---
+
+## 0. *The reddit dataset*
+
+The first, and possibly most important aspect of our study is the data. For this, we're using the Reddit Hyperlink Network dataset[CITE].
+
+This dataset contains a list of crossposts in reddit from Jan 2014 to April 2017. Crossposts are posts that begin in one "subreddit", or community, and are shared to another subreddit. So effecitvely, this dataset acts as a sort of graph, representing how communities interact, negativety is spread, and information is shared.
+
+In addition, we used one other dataset, the Reddit User and Subreddit Embeddings[CITE]. This gives us "embeddings" for users and subreddits. In the case of users, these embeddings capture user activity. And in the case of subreddits, these embeddings act as a sort of overview of how the users in each subreddit behaves. While we will not go deep into embeddings, they essentially allow us to compare how similar two users or subreddits are. If two users have similar embeddings, they likely act in similar ways and visit similar subreddits.
 
 ## 1. *How hostile are subreddit interactions, really?*
 
