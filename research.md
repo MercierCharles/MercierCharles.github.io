@@ -215,32 +215,116 @@ Exploring the map you might notice that we assigned a name/theme to each cluster
 <details>
 <summary>If you're curious, this table summarizes the resulting clusters</summary>
 
-**Click to expand the cluster table.**
-
-| Cluster ID | Cluster Name | Description |
-|-----------|--------------|-------------|
-| 0 | Mainstream Team Sports | Professional and college sports communities (NFL, NBA, NHL, MLB) plus fantasy leagues and team-specific fanbases. |
-| 1 | Reddit Meta and Drama | Subreddits focused on Reddit culture, drama, archives, circlejerks, and meta-discussion about users and moderators. |
-| 2 | Personal Advice and Mental Health | Communities offering personal help, relationship advice, self-improvement, and mental-health support, with some fitness and MBTI groups. |
-| 3 | Core Gaming (PC/Console) | Major gaming franchises, PC/console hardware, and general gaming discussion communities. |
-| 4 | News, Politics, and World Regions | National/city subs, world news, geopolitics, and science/technology communities discussing real-world events. |
-| 5 | Tabletop and Strategy Gaming | Tabletop RPGs, board games, strategy/simulation titles, and story-driven gaming fandoms. |
-| 6 | Politics, Ideologies, and Conspiracies | Highly political and ideological subs, ranging from mainstream politics to fringe ideologies and conspiracy groups. |
-| 7 | Skepticism and “Bad X” Critiques | Subreddits dedicated to debunking low-quality content and discussing activism, moderation, and meta-critique. |
-| 8 | Cryptocurrency and Speculation | Cryptocurrency communities, tipping ecosystems, and speculative finance/trading groups. |
-| 9 | Music Fandom and Production | Music genre/band fandoms and music-making communities, plus some Reddit client/tool subs. |
-| 10 | Esports and Anime Fandom | Competitive online gaming, esports scenes, in-game trading, and anime/manga-related communities. |
-| 11 | Meta-Politics and Watchdog Communities | Ideology-focused watchdog, anti-extremist, and meta-political critique subs. |
-| 12 | Cities, Careers, and Everyday Life | Local city communities, professional/academic subs, and everyday-life interests like pets, cooking, and travel. |
-| 13 | Multiplayer Factions and Trading | In-game factions, clans, server communities, and trading hubs for multiplayer online games. |
-| 14 | Technology and Programming | Programming languages, sysadmin/IT, operating systems, and mainstream consumer electronics. |
-| 15 | Memes and Entertainment | Meme culture, humour subs, and TV/movie fandom communities. |
-| 16 | NSFW and Adult Communities | Adult content, personals, kink/fetish subs, and related NSFW relationship-oriented communities. |
-| 17 | Niche Gaming and Utility Subs | Smaller gaming leagues and assorted meta/utility subs such as feedback or trending lists. |
-| 18 | Fashion, Beauty, and Lifestyle Hacks | Streetwear, beauty/skincare exchanges, vaping communities, and lifestyle/self-control groups. |
-| 19 | Identity, Religion, and Social Issues | Identity-focused, religious, national communities, and anti-hate/social-issue watchdog subs. |
+<table>
+  <tr>
+    <th>Cluster ID</th>
+    <th>Cluster Name</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>0</td>
+    <td>Mainstream Team Sports</td>
+    <td>Professional and college sports communities (NFL, NBA, NHL, MLB) plus fantasy leagues and team-specific fanbases.</td>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>Reddit Meta and Drama</td>
+    <td>Subreddits focused on Reddit culture, drama, archives, circlejerks, and meta-discussion about users and moderators.</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>Personal Advice and Mental Health</td>
+    <td>Communities offering personal help, relationship advice, self-improvement, and mental-health support, with some fitness and MBTI groups.</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>Core Gaming (PC/Console)</td>
+    <td>Major gaming franchises, PC/console hardware, and general gaming discussion communities.</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>News, Politics, and World Regions</td>
+    <td>National/city subs, world news, geopolitics, and science/technology communities discussing real-world events.</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>Tabletop and Strategy Gaming</td>
+    <td>Tabletop RPGs, board games, strategy/simulation titles, and story-driven gaming fandoms.</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>Politics, Ideologies, and Conspiracies</td>
+    <td>Highly political and ideological subs, ranging from mainstream politics to fringe ideologies and conspiracy groups.</td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>Skepticism and “Bad X” Critiques</td>
+    <td>Subreddits dedicated to debunking low-quality content and discussing activism, moderation, and meta-critique.</td>
+  </tr>
+  <tr>
+    <td>8</td>
+    <td>Cryptocurrency and Speculation</td>
+    <td>Cryptocurrency communities, tipping ecosystems, and speculative finance/trading groups.</td>
+  </tr>
+  <tr>
+    <td>9</td>
+    <td>Music Fandom and Production</td>
+    <td>Music genre/band fandoms and music-making communities, plus some Reddit client/tool subs.</td>
+  </tr>
+  <tr>
+    <td>10</td>
+    <td>Esports and Anime Fandom</td>
+    <td>Competitive online gaming, esports scenes, in-game trading, and anime/manga-related communities.</td>
+  </tr>
+  <tr>
+    <td>11</td>
+    <td>Meta-Politics and Watchdog Communities</td>
+    <td>Ideology-focused watchdog, anti-extremist, and meta-political critique subs.</td>
+  </tr>
+  <tr>
+    <td>12</td>
+    <td>Cities, Careers, and Everyday Life</td>
+    <td>Local city communities, professional/academic subs, and everyday-life interests like pets, cooking, and travel.</td>
+  </tr>
+  <tr>
+    <td>13</td>
+    <td>Multiplayer Factions and Trading</td>
+    <td>In-game factions, clans, server communities, and trading hubs for multiplayer online games.</td>
+  </tr>
+  <tr>
+    <td>14</td>
+    <td>Technology and Programming</td>
+    <td>Programming languages, sysadmin/IT, operating systems, and mainstream consumer electronics.</td>
+  </tr>
+  <tr>
+    <td>15</td>
+    <td>Memes and Entertainment</td>
+    <td>Meme culture, humour subs, and TV/movie fandom communities.</td>
+  </tr>
+  <tr>
+    <td>16</td>
+    <td>NSFW and Adult Communities</td>
+    <td>Adult content, personals, kink/fetish subs, and related NSFW relationship-oriented communities.</td>
+  </tr>
+  <tr>
+    <td>17</td>
+    <td>Niche Gaming and Utility Subs</td>
+    <td>Smaller gaming leagues and assorted meta/utility subs such as feedback or trending lists.</td>
+  </tr>
+  <tr>
+    <td>18</td>
+    <td>Fashion, Beauty, and Lifestyle Hacks</td>
+    <td>Streetwear, beauty/skincare exchanges, vaping communities, and lifestyle/self-control groups.</td>
+  </tr>
+  <tr>
+    <td>19</td>
+    <td>Identity, Religion, and Social Issues</td>
+    <td>Identity-focused, religious, national communities, and anti-hate/social-issue watchdog subs.</td>
+  </tr>
+</table>
 
 </details>
+
 
 
 From this point on, we shift our analysis from individual subreddits to cluster-level behavior, where broader trends are easier to identify than when working with thousands of individual subreddits.
