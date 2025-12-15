@@ -213,8 +213,9 @@ The result is encouraging! Many of the visual "islands" we noticed earlier natur
 Exploring the map you might notice that we assigned a name/theme to each cluster. This is done through a combination of manual inspection and LLM-assisted labeling
 
 <details>
-  <summary>If you're curious, this table summarizes the resulting clusters</summary>
+<summary>If you're curious, this table summarizes the resulting clusters</summary>
 
+**Click to expand the cluster table.**
 
 | Cluster ID | Cluster Name | Description |
 |-----------|--------------|-------------|
@@ -238,7 +239,6 @@ Exploring the map you might notice that we assigned a name/theme to each cluster
 | 17 | Niche Gaming and Utility Subs | Smaller gaming leagues and assorted meta/utility subs such as feedback or trending lists. |
 | 18 | Fashion, Beauty, and Lifestyle Hacks | Streetwear, beauty/skincare exchanges, vaping communities, and lifestyle/self-control groups. |
 | 19 | Identity, Religion, and Social Issues | Identity-focused, religious, national communities, and anti-hate/social-issue watchdog subs. |
-
 
 </details>
 
