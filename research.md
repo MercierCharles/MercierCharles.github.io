@@ -39,7 +39,11 @@ To answer these questions, you dig into crosspost data from Reddit—one of the 
 
 We begin with a global picture of tone across posts.
 
-![Overall tone](/assets/images/global_tone.png)
+
+<div style="text-align:center; margin: 1rem 0;">
+  <img src="/assets/images/global_tone.png" alt="Overall tone" style="width:80%; height:auto;">
+</div>
+
 
 Surprisingly, we notice something that is rather encouraging:
 
@@ -51,20 +55,19 @@ The majority of posts are either positive or neutral (90.3%), and only 9.7% are 
 However, exceptions do matter. Even a relatively small group of negative posts tend to have a large impact on the general atmosphere of social media. Our goal is therefore to better understand this 9.7%.
 
 
-To do this, we will look at the distribution of the number of negative posts per subreddit:
+To do this, we will look at the distribution of the number of negative links per subreddit:
 we rank the subreddits by how many negative posts they send (from most to least) and we plot this distribution on a log-log scale.
-![Negative posts per subreddit](/assets/images/negative_subreddit.png)
+
+<div style="text-align:center; margin: 1rem 0;">
+  <img src="/assets/images/negative_subreddit.png" alt="Overall tone" style="width:80%; height:auto;">
+</div>
 
 We recognize a well-known distribution: a heavy-tailed distribution.
 This means that a small portion of subreddits accounts for a very large number of negative posts, while the vast majority produce very few.
 
-Furthermore, by visualizing the number of negative posts per community, we can notice this more concretely. Only 43 out of 2086 communities have more than 5 negative posts!
-
-![Bar negative block](/assets/images/bar_negative_block.png)
-
 For moderation, this is encouraging! 
 
-If a small cluster is responsible for most negative interactions, targeted interventions could be extremely effective. Even minimal moderation has the potential to have a strong impact on ensuring that our new app doesn't fall into the same patterns of toxicity as Reddit.
+If a small proportion is responsible for most negative interactions, targeted interventions could be extremely effective. Even minimal moderation has the potential to have a strong impact on ensuring that our new app doesn't fall into the same patterns of toxicity as Reddit.
 
 ## 2. From individual subreddits to communities
 
@@ -84,7 +87,10 @@ We first construct a positive graph (G+) where:
 On this graph (G+), we apply the **Louvain** algorithm to detect groups of subreddits that interact positively with each other.
 We found **2086 communities** (blocks of subreddits), with a modularity of approximately **0.55** which indicates that the positive links are well clustered into communities.
 
-### Why work on the graph (G+)?
+<details open>
+  <summary>Why work on the graph (G+) ? </summary>
+
+  <div markdown="1">
 You might ask why focus on the G+ graph and not on all the positive and negative interactions.
 The reason is simple :
 
@@ -95,7 +101,18 @@ If we were to use the full graph (with both positive and negative links) to clus
 
 However, what we want to see are the conflicts between communities.
 By focusing only on (G+), we amplify the network's affinity structure and then we can analyse how negative links circulate between these blocks to understand where the negativity lies.
+ 
+</div>
 
+</details>
+
+Now we have our communities, we can plot the distribution of the number of negative links per communities, this time !
+
+<div style="text-align:center; margin: 1rem 0;">
+  <img src="/assets/images/bar_negative_block.png" alt="Overall tone" style="width:80%; height:auto;">
+</div>
+
+We notice that only 43 out of 2086 communities have more than 5 negative posts!
 
 It is still a bit abstract, though. To better understand how these communities relate to each other, we now visualize the **community network**:
 
@@ -113,7 +130,7 @@ It's much more visual! But how do we understand this *network graph*?
 
 Each node represents a community identified by Louvain:
 
-- the color represents its **negativity rate** : $negative\_rate(C) = \dfrac{neg\_out(C)}{total\_out(C)}$ (when $total\_out(C) > 0$).
+- the color represents its **negativity rate** : $$\text{negative_rate}(C)=\frac{\text{neg_out}(C)}{\text{total_out}(C)} \quad \text{(defined only when } \text{total_out}(C)>0\text{)}$$.
 - each edge represents a **negative link** sent from one community to another
 - the size of the node represents the **number of subreddits** in the community.
 
@@ -122,8 +139,7 @@ We observe two main things:
 - **A highly connected core**: the largest communities are located there and concentrate most of the negativity : they exchange many negative links with each other and around them, many small communities attack these large communities. These large communities also target certain small communities.
 - **Many small communities on the periphery**: they have few or no negative links and don't participate in the negative interactions of the core.
 
-We can conclude that only these large online communities concentrate the majority of the negativity.
-This data supports our earlier observation about our moderation strategy: We should focus on a small core of large communities!
+These large communities seem to act as “hubs” that concentrate negativity. It supports our moderation strategy: Rather than moderating uniformly across Reddit, we should focus on a small subset of communities !
 
 So now, let's zoom into this core set of communities: 
 
