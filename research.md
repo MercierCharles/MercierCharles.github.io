@@ -132,6 +132,86 @@ So now, let's zoom into this core set of communities:
 
 Now that we've identified the communities consisting of our 'core' interactions, let's pay attention to these higher-level clusters (e.g., politics, hobbies, geography, lifestyle). In the context of our app, we likely will not have any special communities that map to subreddits. For example, we may not have a community that corresponds to r/nfl or r/nba, but it is very likely that we will have groups of users that create sports communities. So by creating and understanding the interactions between these active high-level clusters, we can understand structural causes of conflict that appear regardless of specific subreddit identities.
 
+### Mapping the subreddit landscape
+
+To go further, we need a way to place subreddits relative to each other, not just connect them through edges. For this, we rely on subreddit embeddings provided in the Reddit User and Subreddit Embeddings dataset (Kumar et al.).
+
+The idea behind these embeddings is simple: two subreddits are close if they share similar users. Subreddits that attract the same types of users end up with similar embeddings, even if they do not directly interact. This gives us a way to build a "map" of the subreddit landscape, where proximity reflects shared user bases.
+
+Each subreddit is represented by a 300-dimensional vector. To visualize this space, we need to reduce its dimensionality. We first apply PCA, keeping the 50 most informative components.
+
+You might wonder: why 50 components?
+![Explained variance by PCA components](/assets/images/explained_variance_pca.png)
+The figure above shows how much variance is explained as we add PCA components. We observe that the curve rises quickly at first and then starts to flatten. Around 50 components, more than 90% of the total variance is already captured. This means that most of the meaningful differences between subreddits are still preserved, while the remaining components mostly capture noise or small details.
+
+We then apply t-SNE to project the data into two dimensions for visualization.
+
+Applying PCA before t-SNE turns out to be crucial. Without it, the visualization is noisy and there are no clear clusters taking shape. With PCA, the structure becomes much clearer and coherent clusters start to appear, which is important for the clustering step that follows.
+
+In early versions of the map, we included all subreddits. However, this introduced a large amount of noise due to inactive or marginal communities.
+After building the G+ graph, we now understand that a small number of communities dominate interactions, while a long tail of subreddits contributes very little.
+
+To focus on these "core" communities, we restrict the map to subreddits with at least 2,000 posts. This results in a much cleaner and more interpretable mapping.
+
+Putting everything together, we arrive at the map below:
+
+<iframe 
+    src="/assets/data/website_figures/subreddit_embeddings_map.html"
+    style="width:100%; height:70vh; border:none;">
+</iframe>
+
+It looks pretty neat! Take a moment to explore it and you’ll start seeing patterns emerge. Look at the "island" at the very top: "oaklandraiders", "nygiants", "anaheimducks". See the common theme? Sports communities are clustered up there.
+
+Now move your attention at the far left of the map. Another "island" appears, with subreddits like "ubuntu", "windows10", "python". Looks like tech communities are gathering there.
+
+This map will be our reference point going forward. We'll use it to cluster subreddits, and then dig into how these clusters "talk" to each other.
+
+### Finding clusters in the map
+
+Now that we have a map of the subreddit landscape, the next step is to group nearby subreddits into clusters.
+Here, a cluster simply refers to a group of subreddits that end up close to each other on the map and are expected to share similar themes or user behavior.
+
+To do this, we use the K-Means clustering algorithm. The main question is how many clusters we should look for. To guide this choice, we rely on the elbow method: we vary the number of clusters k and observe how cluster tightness improves. Beyond a certain point, adding more clusters only yields marginal gains. 
+![Elbow method for optimal k](/assets/images/elbow_optimal_k.png)
+
+We pick this elbow point, which in our case corresponds to k = 20.
+
+Important note: clustering is applied directly on the reduced representation used for visualization (PCA followed by t-SNE), rather than on the original 300-dimensional embeddings. We experimented with several options, including clustering on the original embeddings and on PCA-reduced embeddings only. In practice, clustering on the PCA + t-SNE space produced the most coherent and interpretable results, with clusters that are compact and thematically consistent.
+
+<iframe 
+    src="/assets/data/website_figures/subreddit_clusters_map.html"
+    style="width:100%; height:70vh; border:none;">
+</iframe>
+
+The result is encouraging! Many of the visual "islands" we noticed earlier naturally turn into clusters. Sports communities that were grouped together at the top of the map end up in the same cluster, as do the tech subreddits on the left side. Other clear themes also emerge, such as gaming, politics, memes, or self-improvement.
+
+Exploring the map you might notice that we assigned a name/theme to each cluster. This is done through a combination of manual inspection and LLM-assisted labeling. If you're curious, the table below summarizes the resulting clusters:
+
+| Cluster ID | Cluster Name | Description |
+|-----------|--------------|-------------|
+| 0 | Mainstream Team Sports | Professional and college sports communities (NFL, NBA, NHL, MLB) plus fantasy leagues and team-specific fanbases. |
+| 1 | Reddit Meta and Drama | Subreddits focused on Reddit culture, drama, archives, circlejerks, and meta-discussion about users and moderators. |
+| 2 | Personal Advice and Mental Health | Communities offering personal help, relationship advice, self-improvement, and mental-health support, with some fitness and MBTI groups. |
+| 3 | Core Gaming (PC/Console) | Major gaming franchises, PC/console hardware, and general gaming discussion communities. |
+| 4 | News, Politics, and World Regions | National/city subs, world news, geopolitics, and science/technology communities discussing real-world events. |
+| 5 | Tabletop and Strategy Gaming | Tabletop RPGs, board games, strategy/simulation titles, and story-driven gaming fandoms. |
+| 6 | Politics, Ideologies, and Conspiracies | Highly political and ideological subs, ranging from mainstream politics to fringe ideologies and conspiracy groups. |
+| 7 | Skepticism and “Bad X” Critiques | Subreddits dedicated to debunking low-quality content and discussing activism, moderation, and meta-critique. |
+| 8 | Cryptocurrency and Speculation | Cryptocurrency communities, tipping ecosystems, and speculative finance/trading groups. |
+| 9 | Music Fandom and Production | Music genre/band fandoms and music-making communities, plus some Reddit client/tool subs. |
+| 10 | Esports and Anime Fandom | Competitive online gaming, esports scenes, in-game trading, and anime/manga-related communities. |
+| 11 | Meta-Politics and Watchdog Communities | Ideology-focused watchdog, anti-extremist, and meta-political critique subs. |
+| 12 | Cities, Careers, and Everyday Life | Local city communities, professional/academic subs, and everyday-life interests like pets, cooking, and travel. |
+| 13 | Multiplayer Factions and Trading | In-game factions, clans, server communities, and trading hubs for multiplayer online games. |
+| 14 | Technology and Programming | Programming languages, sysadmin/IT, operating systems, and mainstream consumer electronics. |
+| 15 | Memes and Entertainment | Meme culture, humour subs, and TV/movie fandom communities. |
+| 16 | NSFW and Adult Communities | Adult content, personals, kink/fetish subs, and related NSFW relationship-oriented communities. |
+| 17 | Niche Gaming and Utility Subs | Smaller gaming leagues and assorted meta/utility subs such as feedback or trending lists. |
+| 18 | Fashion, Beauty, and Lifestyle Hacks | Streetwear, beauty/skincare exchanges, vaping communities, and lifestyle/self-control groups. |
+| 19 | Identity, Religion, and Social Issues | Identity-focused, religious, national communities, and anti-hate/social-issue watchdog subs. |
+
+From this point on, we shift our analysis from individual subreddits to cluster-level behavior, where broader trends are easier to identify than when working with thousands of individual subreddits.
+
 ### Graphs
 
 - **Graph 5 — Interactive network of clusters**
