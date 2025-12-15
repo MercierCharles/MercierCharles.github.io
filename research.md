@@ -201,7 +201,11 @@ Important note: clustering is applied directly on the reduced representation use
 
 The result is encouraging! Many of the visual "islands" we noticed earlier naturally turn into clusters. Sports communities that were grouped together at the top of the map end up in the same cluster, as do the tech subreddits on the left side. Other clear themes also emerge, such as gaming, politics, memes, or self-improvement.
 
-Exploring the map you might notice that we assigned a name/theme to each cluster. This is done through a combination of manual inspection and LLM-assisted labeling. If you're curious, the table below summarizes the resulting clusters:
+Exploring the map you might notice that we assigned a name/theme to each cluster. This is done through a combination of manual inspection and LLM-assisted labeling
+
+<details>
+  <summary>If you're curious, this table summarizes the resulting clusters</summary>
+
 
 | Cluster ID | Cluster Name | Description |
 |-----------|--------------|-------------|
@@ -225,6 +229,10 @@ Exploring the map you might notice that we assigned a name/theme to each cluster
 | 17 | Niche Gaming and Utility Subs | Smaller gaming leagues and assorted meta/utility subs such as feedback or trending lists. |
 | 18 | Fashion, Beauty, and Lifestyle Hacks | Streetwear, beauty/skincare exchanges, vaping communities, and lifestyle/self-control groups. |
 | 19 | Identity, Religion, and Social Issues | Identity-focused, religious, national communities, and anti-hate/social-issue watchdog subs. |
+
+
+</details>
+
 
 From this point on, we shift our analysis from individual subreddits to cluster-level behavior, where broader trends are easier to identify than when working with thousands of individual subreddits.
 
