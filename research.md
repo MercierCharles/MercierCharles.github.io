@@ -453,9 +453,15 @@ Pick a cluster to inspect its interaction network, profile, and radar view. The 
   function updateCluster(clusterId) {
     const base =
       "/assets/data/website_figures/clusters_details/cluster_" + clusterId + "_";
-    frames.network.src = base + "network.html";
-    frames.profile.src = base + "profile.html";
-    frames.radar.src = base + "radar.html";
+    if (networkFrame) {
+      networkFrame.src = base + "network.html";
+    }
+    if (frames.profile) {
+      frames.profile.src = base + "profile.html";
+    }
+    if (frames.radar) {
+      frames.radar.src = base + "radar.html";
+    }
   }
 
   select.addEventListener("change", function(e) {
