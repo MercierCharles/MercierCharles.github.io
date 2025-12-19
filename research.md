@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Data Analysis Research
-subtitle: You’re revolutionary AI B2B SaaS Crypto Blockchain IoT YC-backed Silicon Valley Startup Idea
+subtitle: Your revolutionary AI B2B SaaS Crypto Blockchain IoT YC-backed Silicon Valley Startup Idea
 permalink: /
 full-width: true
 mathjax: true
@@ -11,14 +11,15 @@ ext-js:
 
 <div class="research-outline" markdown="1">
 
+You’ve just launched your startup. The idea is simple: create an online platform where college students all around Switzerland can connect, share ideas, and build communities. Early on, everything looks promising — users are joining, discussions are active, and growth feels organic.
 
-You’ve just raised $3M pre-seed to build a new social app for college students.
+Then things start to break down.
 
-There’s just one problem.
+Some communities thrive, while others spiral into conflict. Users jump between groups, arguments spill across community boundaries, and moderation becomes harder than expected. What started as a space for connection slowly reveals a more complex and fragile ecosystem.
 
-Platforms like Reddit, X, and Facebook, despite being rich sources of information and community interaction, all ended up with pockets of extreme hostility, community clashes, and drama.
+This problem isn't unique, platforms like Reddit, X, and Facebook, despite being rich sources of information and community interaction, all ended up with pockets of extreme hostility, community clashes, and drama. 
 
-Before you repeat their mistakes, you need to understand:
+Before you repeat their mistakes and your platform completely collapses and turns into a combination of 4chan and liveleak, you need to understand:
 
 - When conflict between communities arises?
 
@@ -331,9 +332,6 @@ Exploring the map you might notice that we assigned a name/theme to each cluster
 
 From this point on, we shift our analysis from individual subreddits to cluster-level behavior, where broader trends are easier to identify than when working with thousands of individual subreddits.
 
-### Graphs
-
-- **Graph 5 — Interactive network of clusters**
 <iframe 
     src="/assets/data/website_figures/clusters_interaction_network.html"
     style="width:100%; height:70vh; border:none;">
@@ -378,12 +376,9 @@ Using linguistic profiling (sentiment models, LIWC-style categories), we can loo
 
 
 
-### Graphs
 
-- **Graph 6 — Emotional profile of positive vs negative posts**
 ![Negative posts per subreddit](/assets/data/images/emotional_profile_by_cluster.png)
 
-- **Graph 7 — Stylistic profile of positive vs negative posts**
 
 #### Cluster-level drill-down
 
@@ -512,7 +507,6 @@ We have identified who fights (the clusters) and how they fight (the linguistic 
 
 Hiring human moderators is expensive, while AI moderation is cheap but struggles with nuance. To solve this, we developed the **Moderation Matrix (Graph 9)** to prioritize resources based on two factors: **Scale** (Interaction Volume) and **Risk** (Toxicity Ratio).
 
-### Graph 9 — The Moderation Matrix
 
 <details class="math-details">
   <summary>How the Moderation Matrix is computed</summary>
@@ -566,7 +560,6 @@ Finally, we must understand *when* to deploy these resources. Is toxicity a cons
 
 We analyzed the volume of interactions over time, stacking positive exchanges against toxic conflict.
 
-### Graph 1b — The "Viral Outrage" Timeline
 
 <iframe 
     src="/assets/data/website_figures/graph_1b_viral_outrage.html"
