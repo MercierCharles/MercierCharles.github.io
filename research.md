@@ -386,8 +386,6 @@ Using linguistic profiling (sentiment models, LIWC-style categories), we can loo
 
 
 
-![Negative posts per subreddit](/assets/data/images/emotional_profile_by_cluster.png)
-
 
 #### Cluster-level drill-down
 
