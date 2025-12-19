@@ -511,12 +511,32 @@ Hiring human moderators is expensive, while AI moderation is cheap but struggles
 
 ### Graph 9 — The Moderation Matrix
 
+<details class="math-details">
+  <summary>How the Moderation Matrix is computed</summary>
+
+  <div markdown="1">
+Each community is a point in a 2D space:
+
+- **Scale** measures how much a community participates in cross-community interactions.
+- **Risk** measures how negative those interactions are.
+
+We use the same community-level aggregates defined earlier:
+
+$$\text{Scale}(C)=\text{total_out}(C) \quad \text{where } \text{total_out}(C)=\text{pos_out}(C)+\text{neg_out}(C)$$
+$$\text{Risk}(C)=\frac{\text{neg_out}(C)}{\text{total_out}(C)} \quad \text{(defined only when } \text{total_out}(C)>0\text{)}$$
+
+The x-axis uses a log scale for volume, while the y-axis shows the raw risk ratio.
+  </div>
+</details>
+
+
+
 <iframe 
     src="/assets/data/website_figures/graph_9_moderation_matrix.html"
     style="width:100%; height:70vh; border:none;">
 </iframe>
 
-Graph 9 confirms that toxicity follows a strict Pareto Principle (80/20 rule). A tiny fraction of communities creates the vast majority of our problems. By plotting our 20 communities on this Log-Log scale, distinct strategies emerge for different quadrants:
+Graph 9 confirms that toxicity follows a strict Pareto Principle (80/20 rule). A tiny fraction of communities creates the vast majority of our problems. By plotting our 20 communities on a log-scaled volume axis against risk, distinct strategies emerge for different quadrants:
 
 * **The "Kill Zone" (Top Right)**
     * **Characteristics:** High Volume, High Toxicity.
