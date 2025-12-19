@@ -19,7 +19,7 @@ Some communities thrive, while others spiral into conflict. Users jump between g
 
 This problem isn't unique, platforms like Reddit, X, and Facebook, despite being rich sources of information and community interaction, all ended up with pockets of extreme hostility, community clashes, and drama. 
 
-Before you repeat their mistakes and your platform completely collapses and turns into a combination of 4chan and liveleak, you need to understand:
+Before you repeat their mistakes and your platform completely collapses into a combination of 4chan and liveleak, you need to understand:
 
 - When conflict between communities arises?
 
