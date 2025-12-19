@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Data Analysis Research
-subtitle: Exploring patterns and insights through data visualization
+subtitle: You’re revolutionary AI B2B SaaS Crypto Blockchain IoT YC-backed Silicon Valley Startup Idea
 permalink: /
 full-width: true
 mathjax: true
@@ -11,9 +11,6 @@ ext-js:
 
 <div class="research-outline" markdown="1">
 
-# Data Story Outline: *Mapping Cross-Subreddit Conflict on Reddit*
-
-## Setup: You’re a tech bro launching a revolutionary AI B2B SaaS Crypto Blockchain IoT YC-backed Silicon Valley Startup
 
 You’ve just raised $3M pre-seed to build a new social app for college students.
 
