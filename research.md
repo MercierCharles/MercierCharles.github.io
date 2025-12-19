@@ -42,7 +42,12 @@ The first, and possibly most important aspect of our study is the data. For this
 
 This dataset contains a list of crossposts in reddit from Jan 2014 to April 2017. Crossposts are posts that begin in one "subreddit", or community, and are shared to another subreddit. So effecitvely, this dataset acts as a sort of graph, representing how communities interact, negativety is spread, and information is shared.
 
+Each crosspost comes with a compact 86-dimensional `PROPERTIES` vector that summarizes the text. It includes VADER sentiment scores (positive/negative/compound, tuned for social media), LIWC category counts (anger, anxiety, social, work, etc.), and basic structural signals like word count and capitalization. We use these features to compare how different communities express negativity in both tone and style.
+
 In addition, we used one other dataset, the Reddit User and Subreddit Embeddings[CITE]. This gives us "embeddings" for users and subreddits. In the case of users, these embeddings capture user activity. And in the case of subreddits, these embeddings act as a sort of overview of how the users in each subreddit behaves. While we will not go deep into embeddings, they essentially allow us to compare how similar two users or subreddits are. If two users have similar embeddings, they likely act in similar ways and visit similar subreddits.
+
+
+
 
 ## 1. *How hostile are subreddit interactions, really?*
 
@@ -337,84 +342,6 @@ From this point on, we shift our analysis from individual subreddits to cluster-
     style="width:100%; height:70vh; border:none;">
 </iframe>
 
-#### Cluster-level drill-down
-
-Pick a cluster to inspect its interaction network, profile, and radar view. The three panels below switch automatically when you change the cluster number.
-
-<div id="cluster-details" class="cluster-details">
-  <label for="cluster-select" class="cluster-select-label">
-    Select a cluster:
-  </label>
-  <select id="cluster-select" class="cluster-select">
-    <option value="0">Cluster 0</option>
-    <option value="1">Cluster 1</option>
-    <option value="2">Cluster 2</option>
-    <option value="3">Cluster 3</option>
-    <option value="4">Cluster 4</option>
-    <option value="5">Cluster 5</option>
-    <option value="6">Cluster 6</option>
-    <option value="7">Cluster 7</option>
-    <option value="8">Cluster 8</option>
-    <option value="9">Cluster 9</option>
-    <option value="10">Cluster 10</option>
-    <option value="11">Cluster 11</option>
-    <option value="12">Cluster 12</option>
-    <option value="13">Cluster 13</option>
-    <option value="14">Cluster 14</option>
-    <option value="15">Cluster 15</option>
-    <option value="16">Cluster 16</option>
-    <option value="17">Cluster 17</option>
-    <option value="18">Cluster 18</option>
-    <option value="19">Cluster 19</option>
-  </select>
-
-  <div class="cluster-panels">
-    <div class="cluster-panel">
-      <div class="cluster-panel-title">Linguistic profile</div>
-      <iframe
-        id="cluster-profile"
-        src="/assets/data/website_figures/clusters_details/cluster_0_profile.html"
-        loading="lazy"
-        style="width:100%; height:60vh; border:none;"
-      ></iframe>
-    </div>
-    <div class="cluster-panel">
-      <div class="cluster-panel-title">Thematic radar</div>
-      <iframe
-        id="cluster-radar"
-        src="/assets/data/website_figures/clusters_details/cluster_0_radar.html"
-        loading="lazy"
-        style="width:100%; height:60vh; border:none;"
-      ></iframe>
-    </div>
-  </div>
-</div>
-
-<script>
-(function() {
-  const select = document.getElementById("cluster-select");
-  const frames = {
-    network: document.getElementById("cluster-network"),
-    profile: document.getElementById("cluster-profile"),
-    radar: document.getElementById("cluster-radar"),
-  };
-
-  function updateCluster(clusterId) {
-    const base =
-      "/assets/data/website_figures/clusters_details/cluster_" + clusterId + "_";
-    frames.network.src = base + "network.html";
-    frames.profile.src = base + "profile.html";
-    frames.radar.src = base + "radar.html";
-  }
-
-  select.addEventListener("change", function(e) {
-    updateCluster(e.target.value);
-  });
-
-  updateCluster(select.value);
-})();
-</script>
-
 From this, we identify the top five conflict-heavy cluster pairs—the types of communities that most often clash:
 
 1. (Personal advice ⟺ Politics, Ideology, and Conspiracies)
@@ -438,8 +365,7 @@ In effect, this serves to limit cross-cluster exposure for pairs that produce co
 
 We know that constructive disagreement is healthy. It avoids the creation of these so called echo chambers. On the other hand, toxic arguments are **not** healthy.  
 
-Research (from the original paper) suggests that even mildly negative crossposts can produce mini-echo chambers in the comment section. So unless we encourage the right type of cross community interactions, there's a strong chance we're only reinforcing the creation of these mini-echo chambers. 
-
+Research (from the original paper) suggests that even mildly negative crossposts can produce mini-echo chambers in the comment section. So unless we encourage the right type of cross community interactions, there's a strong chance we're only reinforcing the creation of these mini-echo chambers.
 
 Lucky for us, negativity is not monolithic. We have several different types of negative comments such as:
 
@@ -454,12 +380,14 @@ Lucky for us, negativity is not monolithic. We have several different types of n
 Using linguistic profiling (sentiment models, LIWC-style categories), we can look at the average textual features in each cluster's negative posts. Our aim is to identify which clusters express negativety as critical, constructive arguments, and which clusters express it as hostility and personal attacks.
 
 
+
 ### Graphs
 
 - **Graph 6 — Emotional profile of positive vs negative posts**
 ![Negative posts per subreddit](/assets/data/images/emotional_profile_by_cluster.png)
 
 - **Graph 7 — Stylistic profile of positive vs negative posts**
+
 #### Cluster-level drill-down
 
 Pick a cluster to inspect its interaction network, profile, and radar view. The three panels below switch automatically when you change the cluster number.
@@ -469,26 +397,26 @@ Pick a cluster to inspect its interaction network, profile, and radar view. The 
     Select a cluster:
   </label>
   <select id="cluster-select" class="cluster-select">
-    <option value="0">Cluster 0</option>
-    <option value="1">Cluster 1</option>
-    <option value="2">Cluster 2</option>
-    <option value="3">Cluster 3</option>
-    <option value="4">Cluster 4</option>
-    <option value="5">Cluster 5</option>
-    <option value="6">Cluster 6</option>
-    <option value="7">Cluster 7</option>
-    <option value="8">Cluster 8</option>
-    <option value="9">Cluster 9</option>
-    <option value="10">Cluster 10</option>
-    <option value="11">Cluster 11</option>
-    <option value="12">Cluster 12</option>
-    <option value="13">Cluster 13</option>
-    <option value="14">Cluster 14</option>
-    <option value="15">Cluster 15</option>
-    <option value="16">Cluster 16</option>
-    <option value="17">Cluster 17</option>
-    <option value="18">Cluster 18</option>
-    <option value="19">Cluster 19</option>
+    <option value="0">Cluster 0 - Mainstream Team Sports</option>
+    <option value="1">Cluster 1 - Reddit Meta and Drama</option>
+    <option value="2">Cluster 2 - Personal Advice and Mental Health</option>
+    <option value="3">Cluster 3 - Core Gaming (PC/Console)</option>
+    <option value="4">Cluster 4 - News, Politics, and World Regions</option>
+    <option value="5">Cluster 5 - Tabletop and Strategy Gaming</option>
+    <option value="6">Cluster 6 - Politics, Ideologies, and Conspiracies</option>
+    <option value="7">Cluster 7 - Skepticism and "Bad X" Critiques</option>
+    <option value="8">Cluster 8 - Cryptocurrency and Speculation</option>
+    <option value="9">Cluster 9 - Music Fandom and Production</option>
+    <option value="10">Cluster 10 - Esports and Anime Fandom</option>
+    <option value="11">Cluster 11 - Meta-Politics and Watchdog Communities</option>
+    <option value="12">Cluster 12 - Cities, Careers, and Everyday Life</option>
+    <option value="13">Cluster 13 - Multiplayer Factions and Trading</option>
+    <option value="14">Cluster 14 - Technology and Programming</option>
+    <option value="15">Cluster 15 - Memes and Entertainment</option>
+    <option value="16">Cluster 16 - NSFW and Adult Communities</option>
+    <option value="17">Cluster 17 - Niche Gaming and Utility Subs</option>
+    <option value="18">Cluster 18 - Fashion, Beauty, and Lifestyle Hacks</option>
+    <option value="19">Cluster 19 - Identity, Religion, and Social Issues</option>
   </select>
 
   <div class="cluster-panels">
@@ -540,6 +468,20 @@ Pick a cluster to inspect its interaction network, profile, and radar view. The 
 
 - **Graph 8 — Emotional + stylistic signatures by community cluster**
 
+### Sentiment analysis takeaways
+
+Looking across the cluster profiles, two dimensions consistently separate "healthy" disagreement from toxic conflict:
+
+- **Emotional intensity** (anger, anxiety, sadness) tends to spike in ideologically charged clusters, but intensity alone is not the problem.
+- **Stylistic markers of hostility** (swearing, shouting/caps, personal attacks) are the more reliable signal of harmful negativity.
+
+This distinction matters. For instance, clusters like **Personal Advice and Mental Health (Cluster 2)** show elevated sadness/anxiety but low hostility markers, which suggests vulnerable but constructive exchanges. In contrast, **Reddit Meta and Drama (Cluster 1)** and **Skepticism and "Bad X" Critiques (Cluster 7)** combine high anger with high hostility cues, which is the pattern most correlated with cross-community escalations.
+
+We also see that some large, high-traffic clusters (e.g., **Memes and Entertainment (Cluster 15)**) sit in a "loud but not hostile" zone: high energy, lots of slang, but comparatively low personal-attack markers. These are noisy but not necessarily dangerous.
+
+**Operational implication:** sentiment alone is too blunt. Moderation should weight stylistic hostility more heavily than raw negative emotion, and prioritize interventions where *both* intensity and hostility spike together.
+
+
 From these, two clusters stand out as especially prone to toxic interactions:
 
 Cluster 7 — “Skepticism and Bad-X Critiques”
@@ -559,7 +501,7 @@ What does this tell us in terms of our new app?
 
 When adjusting our algorithm we want to ensure that users active in clusters such as 12 and 2 tend to see other communities more often since they are more likely to exhibit negativey in a healthier way.
 
-On the other hand, users from Clusters 7 and 1 are more likely to create comments that are angrier and more hostile. So like we mentioned in the previous section, it would be useful to prevent users from these communities from being shown posts from clusters they are likely to interact negatively with Additionally, targeting these clusters allows us to deploy our moderation efforts- a limited resource- where they will have the greatest impact.
+On the other hand, users from Clusters 7 and 1 are more likely to create comments that are angrier and more hostile. So like we mentioned in the previous section, it would be useful to prevent users from these communities from being shown posts from clusters they are likely to interact negatively with.
 
 ## 5. The Solution: The Moderation Matrix
 
