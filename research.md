@@ -360,7 +360,7 @@ In effect, this serves to limit cross-cluster exposure for pairs that produce co
 
 We know that constructive disagreement is healthy. It avoids the creation of these so called echo chambers. On the other hand, toxic arguments are **not** healthy.  
 
-Research (from the original paper) suggests that even mildly negative crossposts can produce mini-echo chambers in the comment section. So unless we encourage the right type of cross community interactions, there's a strong chance we're only reinforcing the creation of these mini-echo chambers.
+Research[1] suggests that even mildly negative crossposts can produce mini-echo chambers in the comment section. So unless we encourage the right type of cross community interactions, there's a strong chance we're only reinforcing the creation of these mini-echo chambers.
 
 Lucky for us, negativity is not monolithic. We have several different types of negative comments such as:
 
@@ -477,22 +477,6 @@ This distinction matters. For instance, clusters like **Personal Advice and Ment
 We also see that some large, high-traffic clusters (e.g., **Memes and Entertainment (Cluster 15)**) sit in a "loud but not hostile" zone: high energy, lots of slang, but comparatively low personal-attack markers. These are noisy but not necessarily dangerous.
 
 **Operational implication:** sentiment alone is too blunt. Moderation should weight stylistic hostility more heavily than raw negative emotion, and prioritize interventions where *both* intensity and hostility spike together.
-
-
-From these, two clusters stand out as especially prone to toxic interactions:
-
-Cluster 7 — “Skepticism and Bad-X Critiques”
-Characterized by high anger, swearing, and hostile language
-
-Cluster 1 — “Reddit Meta and Drama”
-Exhibits similar patterns, with high caps usage (rant-style posts) and strong emotional volatility
-
-These clusters aren’t just negative—they have recognizably toxic linguistic signatures. On the other hand, a few clusters stand on the opposite side of the spectrum:
-
-Cluster 2 — "Personal Idea and Mental Health"
-Low Swearing, but high anxiety and sadness
-
-Cluster 12 — "Cities, Career, and Everyday Life 
 
 What does this tell us in terms of our new app?
 
