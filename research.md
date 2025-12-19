@@ -464,7 +464,6 @@ Pick a cluster to inspect its interaction network, profile, and radar view. The 
 })();
 </script>
 
-- **Graph 8 — Emotional + stylistic signatures by community cluster**
 
 ### Sentiment analysis takeaways
 
@@ -505,7 +504,7 @@ On the other hand, users from Clusters 7 and 1 are more likely to create comment
 
 We have identified who fights (the clusters) and how they fight (the linguistic profile). Now, the final question for our startup is: **How do we fix it without going bankrupt?**
 
-Hiring human moderators is expensive, while AI moderation is cheap but struggles with nuance. To solve this, we developed the **Moderation Matrix (Graph 9)** to prioritize resources based on two factors: **Scale** (Interaction Volume) and **Risk** (Toxicity Ratio).
+Hiring human moderators is expensive, while AI moderation is cheap but struggles with nuance. To solve this, we developed the **Moderation Matrix** to prioritize resources based on two factors: **Scale** (Interaction Volume) and **Risk** (Toxicity Ratio).
 
 
 <details class="math-details">
