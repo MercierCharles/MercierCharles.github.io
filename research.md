@@ -35,13 +35,13 @@ To answer these questions, you dig into crosspost data from Reddit—one of the 
 
 ## 0. *The reddit dataset*
 
-The first, and possibly most important aspect of our study is the data. For this, we're using the Reddit Hyperlink Network dataset[CITE].
+The first, and possibly most important aspect of our study is the data. For this, we're using the Reddit Hyperlink Network dataset[1].
 
 This dataset contains a list of crossposts in reddit from Jan 2014 to April 2017. Crossposts are posts that begin in one "subreddit", or community, and are shared to another subreddit. So effecitvely, this dataset acts as a sort of graph, representing how communities interact, negativety is spread, and information is shared.
 
 Each crosspost comes with a compact 86-dimensional `PROPERTIES` vector that summarizes the text. It includes VADER sentiment scores (positive/negative/compound, tuned for social media), LIWC category counts (anger, anxiety, social, work, etc.), and basic structural signals like word count and capitalization. We use these features to compare how different communities express negativity in both tone and style.
 
-In addition, we used one other dataset, the Reddit User and Subreddit Embeddings[CITE]. This gives us "embeddings" for users and subreddits. In the case of users, these embeddings capture user activity. And in the case of subreddits, these embeddings act as a sort of overview of how the users in each subreddit behaves. While we will not go deep into embeddings, they essentially allow us to compare how similar two users or subreddits are. If two users have similar embeddings, they likely act in similar ways and visit similar subreddits.
+In addition, we used one other dataset, the Reddit User and Subreddit Embeddings[2]. This gives us "embeddings" for users and subreddits. In the case of users, these embeddings capture user activity. And in the case of subreddits, these embeddings act as a sort of overview of how the users in each subreddit behaves. While we will not go deep into embeddings, they essentially allow us to compare how similar two users or subreddits are. If two users have similar embeddings, they likely act in similar ways and visit similar subreddits.
 
 
 
@@ -673,6 +673,11 @@ Negativity is rare—but highly concentrate: focused moderation can have disprop
 
 *Not all negativity is harmful:* Emotional and stylistic features help distinguish critique from toxicity. As a result, we should focus on communities that frequency display these negative characteristics
 
+## References
+
+[1] Kumar, S., Hamilton, W. L., Leskovec, J., & Jurafsky, D. (2018). Community interaction and conflict on the web. In Proceedings of the 2018 World Wide Web Conference on World Wide Web (pp. 933–943). International World Wide Web Conferences Steering Committee.
+
+[2] Kumar, S., Zhang, X., & Leskovec, J. (2019). Predicting dynamic embedding trajectory in temporal interaction networks. In Proceedings of the 25th ACM SIGKDD International Conference on Knowledge Discovery & Data Mining (pp. 1269–1278). ACM.
 ---
 </div>
 
