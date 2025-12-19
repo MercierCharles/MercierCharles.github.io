@@ -661,7 +661,8 @@ Negativity is rare—but highly concentrate: focused moderation can have disprop
 [1] Kumar, S., Hamilton, W. L., Leskovec, J., & Jurafsky, D. (2018). Community interaction and conflict on the web. In Proceedings of the 2018 World Wide Web Conference on World Wide Web (pp. 933–943). International World Wide Web Conferences Steering Committee.
 
 [2] Kumar, S., Zhang, X., & Leskovec, J. (2019). Predicting dynamic embedding trajectory in temporal interaction networks. In Proceedings of the 25th ACM SIGKDD International Conference on Knowledge Discovery & Data Mining (pp. 1269–1278). ACM.
----
+
+
 </div>
 
 <style>
