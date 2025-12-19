@@ -162,7 +162,7 @@ Now that we've identified the communities consisting of our 'core' interactions,
 
 ### Mapping the subreddit landscape
 
-To go further, we need a way to place subreddits relative to each other, not just connect them through edges. For this, we rely on subreddit embeddings provided in the Reddit User and Subreddit Embeddings dataset (Kumar et al.).
+To go further, we need a way to place subreddits relative to each other, not just connect them through edges. For this, we rely on subreddit embeddings provided in the Reddit User and Subreddit Embeddings dataset[2].
 
 The idea behind these embeddings is simple: two subreddits are close if they share similar users. Subreddits that attract the same types of users end up with similar embeddings, even if they do not directly interact. This gives us a way to build a "map" of the subreddit landscape, where proximity reflects shared user bases.
 
