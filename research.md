@@ -358,6 +358,8 @@ From this, we identify the top five conflict-heavy cluster pairs—the types of 
 
 5. (Memes and Entertainment ⟺ Skepticism and Bad-X Critiques)
 
+If you only remember one thing from this network, it’s that conflict isn’t evenly “smeared” across the platform: it tends to travel along a handful of high-traffic bridges. In our k-means cluster interaction graph, **Personal Advice and Mental Health** and **Memes and Entertainment** act as major *connectors* between otherwise separate regions of Reddit (high betweenness), which makes them disproportionately important for the *spread* of negativity even when they are not the original source. Meanwhile, the most toxic edges are extremely concentrated (e.g., **Skepticism/Bad‑X Critiques → Memes** and **Politics/Ideologies → News**), suggesting a practical moderation strategy for a startup: don’t try to “fix the whole network”—monitor a small set of bridge communities and the top hostile cross-cluster links, and intervene early when those specific pathways spike.
+
 Now that we have a way to identify which clusters are most likely to come into conflict, how can we act on it? One approach is to adapt our recommendation algorithm. In particular, we can reduce the visibility of posts from clusters that a user’s home cluster tends to react negatively to, ensuring that users are less frequently exposed to communities with which they historically clash.
 
 In effect, this serves to limit cross-cluster exposure for pairs that produce consistently toxic interactions. There is one signficiant downside to this however - the creation of echo chambers. It's known that when users are surrounded by those who share their own views, this creates 'echo chambers', or communities where extreme views tend to be amplified without being tempered by conflicting opinions. This concern leads us to our next section.
@@ -382,6 +384,16 @@ Lucky for us, negativity is not monolithic. We have several different types of n
 - Coordinated attacks
 
 Using linguistic profiling (sentiment models, LIWC-style categories), we can look at the average textual features in each cluster's negative posts. Our aim is to identify which clusters express negativety as critical, constructive arguments, and which clusters express it as hostility and personal attacks.
+
+<details>
+<summary>Global linguistic shift (negative vs non-negative)</summary>
+
+<iframe 
+    src="/assets/data/website_figures/emotional_profile_differences.html"
+    style="width:100%; height:60vh; border:none;">
+</iframe>
+
+</details>
 
 
 
@@ -444,10 +456,10 @@ Pick a cluster to inspect its interaction network, profile, and radar view. The 
 (function() {
   const select = document.getElementById("cluster-select");
   const frames = {
-    network: document.getElementById("cluster-network"),
     profile: document.getElementById("cluster-profile"),
     radar: document.getElementById("cluster-radar"),
   };
+  const networkFrame = document.getElementById("cluster-network");
 
   function updateCluster(clusterId) {
     const base =
@@ -542,6 +554,10 @@ Graph 9 confirms that toxicity follows a strict Pareto Principle (80/20 rule). A
 
 **The Startup Takeaway:** Don't try to moderate the whole internet. Ignore the bottom-right, automate the top-left, and send your human team into the top-right Kill Zone.
 
+One thing the Moderation Matrix doesn’t show is how conflict spreads. A cluster can look fairly “safe” on average, but still be a busy crossroads where many different communities meet. If a toxic cluster can reach the rest of the platform through these crossroads, negativity travels farther and faster.
+
+So in practice, we won’t just moderate the “worst” clusters. We'll Also watch the bridge clusters and the few specific cross-cluster links that carry most of the hostile traffic. Adding small frictions on those pathways (rate limits, stricter review, reduced amplification) can slow down spillover without heavy-handed moderation everywhere.
+
 ---
 
 ## 6. Timing is Everything: The "Viral Outrage"
@@ -564,6 +580,8 @@ The data refutes the idea that "internet trolls are always on". Conflict is not 
 **What causes these bursts?** These spikes usually correlate with external real-world events (elections, scandals, viral news). When these events hit, the "Kill Zone" communities identified above flare up simultaneously.
 
 **The Operational Lesson:** We don't need a massive standing army of moderators 24/7. Instead, we need **Surge Capacity**. Our system needs to detect the initial slope of a "red spike" (as seen in late 2017) and dynamically scale server costs only when the alarm sounds.
+
+Concretely, the easiest “early warning system” isn’t watching the whole platform it’s watching the handful of cross-cluster edges that historically carry the most conflict. When those specific links start ramping up (for example, the strongest Politics→News or Skepticism→Memes pathways), that’s a reliable signal that a broader spike is about to propagate through the network.
 
 ---
 
