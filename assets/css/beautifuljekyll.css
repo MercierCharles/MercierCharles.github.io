@@ -3,6 +3,8 @@ layout: null
 ---
 
 @import url("pygment_highlights.css");
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Source+Sans+3:wght@400;500&display=swap');
+
 
 :root {
   /* config file CSS variables */
@@ -19,8 +21,8 @@ layout: null
   --footer-hover-col: {{ site.footer-hover-col | default: "#0085A1" }};
 
   /* common CSS variables */
-  --body-font: 'Inter', system-ui, -apple-system, sans-serif;
-  --header-font: 'Space Grotesk', sans-serif;
+  --body-font: 'Source Sans 3', sans-serif;
+  --header-font: 'Fraunces', serif;
   --mid-col: #808080;
 }
 
