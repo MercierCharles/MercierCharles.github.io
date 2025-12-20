@@ -414,7 +414,7 @@ Lucky for us, negativity is not monolithic. We have several different types of n
 
 - Coordinated attacks
 
-Using linguistic profiling (sentiment models, LIWC-style categories), we can look at the average textual features in each cluster's negative posts. Our aim is to identify which clusters express negativety as critical, constructive arguments, and which clusters express it as hostility and personal attacks.
+In fact, we can even see examples of the standard type of cross post comments between communities in the "Cluster Interaction Network" above. It's quite obvious from this graph that just because posts between two pairs of communities are negative, that doesn't mean they share the same emotions and sentiment. Using linguistic profiling (sentiment models, LIWC-style categories), we can look at the average textual features in each cluster's negative posts. Our aim is to identify which clusters express negativety as critical, constructive arguments, and which clusters express it as hostility and personal attacks.
 
 <details >
 <summary>Global linguistic shift (negative vs non-negative)</summary>
