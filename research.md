@@ -170,6 +170,18 @@ The idea behind these embeddings is simple: two subreddits are close if they sha
 
 Each subreddit is represented by a 300-dimensional vector. To visualize this space, we need to reduce its dimensionality. We first apply PCA, keeping the 50 most informative components.
 
+
+<details class="math-details">
+<summary>PCA? What's that?</summary>
+In the real world, data is rarely simple. Instead of being described by just one or two qualities, it often comes with thousands, sometimes even tens of thousands, of overlapping details. The problem is that as this list grows longer, the data becomes harder for people to make sense of. Important patterns get buried, and understanding what really matters turns into a challenge.
+
+So what can we do about this?
+
+This is where PCA comes in. PCA, short for Principal Component Analysis, is a way of simplifying complex data without losing its overall shape. It takes all those tiny details and folds them into a smaller set of new features that still reflect the big picture. Some information is inevitably left behind, but what remains is usually what matters most — the structure that helps us compare, interpret, and understand the data.
+
+Throughout the rest of this story, when we talk about components, we’re referring to these new features that PCA creates: compact summaries that capture the most important patterns in the data.
+</details>
+
 You might wonder: why 50 components?
 
 ![Explained variance by PCA components](/assets/images/explained_variance_pca.png)
@@ -178,6 +190,11 @@ You might wonder: why 50 components?
 The figure shows how the data becomes clearer as more components are added. At first, each new component adds a lot of information, but soon the gains start to slow down. We observe that the curve rises quickly at first and then starts to flatten. Around 50 components, more than 90% of the total variance is already captured. This means that most of the meaningful differences between subreddits are still preserved, while the remaining components mostly capture noise or small details.
 
 We then apply t-SNE to project the data into two dimensions for visualization.
+
+<details class="math-details">
+<summary>t-SNE?</summary>
+t-SNE is another algorithm used to make complex data easier to analyze, similar to PCA. It’s a bit more complicated than PCA, but the key idea is simple: t-SNE arranges data points in a way that keeps similar points close together. The result is a graph where natural groupings often appear clearly, making patterns easier for humans to see.
+</details>
 
 Applying PCA before t-SNE turns out to be crucial. Without it, the visualization is noisy and there are no clear clusters taking shape. With PCA, the structure becomes much clearer and coherent clusters start to appear, which is important for the clustering step that follows.
 
