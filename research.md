@@ -13,7 +13,7 @@ ext-js:
 
 <div class="research-outline" markdown="1">
 
-You’ve just launched your startup. The idea is simple: create an online platform where college students all around Switzerland can connect, share ideas, and build communities. Early on, everything looks promising users are joining, discussions are active, and growth feels organic.
+You’ve just launched your startup. The idea is simple: create an online platform where college students all around Switzerland can connect, share ideas, and build communities. Early on, everything looks promising— users are joining, discussions are active, and growth feels organic.
 
 Then things start to break down.
 
@@ -613,7 +613,7 @@ The x-axis uses a log scale for volume, while the y-axis shows the raw risk rati
     style="width:120%; height:60vh; border:none;">
 </iframe>
 
-Graph 9 confirms that toxicity follows a strict Pareto Principle (80/20 rule). A tiny fraction of communities creates the vast majority of our problems. By plotting our 20 communities on a log-scaled volume axis against risk, distinct strategies emerge for different quadrants:
+The graph above confirms that toxicity follows a strict Pareto Principle (80/20 rule). A tiny fraction of communities creates the vast majority of our problems. By plotting our 20 communities on a log-scaled volume axis against risk, distinct strategies emerge for different quadrants:
 
 * **The "Kill Zone" (Top Right)**
     * **Characteristics:** High Volume, High Toxicity.
@@ -634,7 +634,7 @@ Graph 9 confirms that toxicity follows a strict Pareto Principle (80/20 rule). A
 
 One thing the Moderation Matrix doesn’t show is how conflict spreads. A cluster can look fairly “safe” on average, but still be a busy crossroads where many different communities meet. If a toxic cluster can reach the rest of the platform through these crossroads, negativity travels farther and faster.
 
-So in practice, we won’t just moderate the “worst” clusters. We'll Also watch the bridge clusters and the few specific cross-cluster links that carry most of the hostile traffic. Adding small frictions on those pathways (rate limits, stricter review, reduced amplification) can slow down spillover without heavy-handed moderation everywhere.
+So in practice, we won’t just moderate the “worst” clusters. We'll also watch the bridge clusters and the few specific cross-cluster links that carry most of the hostile traffic. Adding small frictions on those pathways (rate limits, stricter review, reduced amplification) can slow down spillover without heavy-handed moderation everywhere.
 
 ---
 
