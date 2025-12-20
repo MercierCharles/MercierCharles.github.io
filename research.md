@@ -44,7 +44,7 @@ This dataset contains a list of crossposts in reddit from Jan 2014 to April 2017
 
 Each crosspost comes with a compact 86-dimensional `PROPERTIES` vector that summarizes the text. It includes VADER sentiment scores (positive/negative/compound, tuned for social media), LIWC category counts (anger, anxiety, social, work, etc.), and basic structural signals like word count and capitalization. We use these features to compare how different communities express negativity in both tone and style.
 
-In addition, we used one other dataset, the Reddit User and Subreddit Embeddings[2]. This gives us "embeddings" for users and subreddits. In the case of users, these embeddings capture user activity. And in the case of subreddits, these embeddings act as a sort of overview of how the users in each subreddit behaves. While we will not go deep into embeddings, they essentially allow us to compare how similar two users or subreddits are. If two users have similar embeddings, they likely act in similar ways and visit similar subreddits.
+In addition, we use one other dataset, the Reddit User and Subreddit Embeddings[2]. This gives us "embeddings" for users and subreddits. In the case of users, these embeddings capture user activity. And in the case of subreddits, these embeddings act as a sort of overview of how the users in each subreddit behaves. While we will not go deep into embeddings, they essentially allow us to compare how similar two users or subreddits are. If two users have similar embeddings, they likely act in similar ways and visit similar subreddits.
 
 
 
@@ -171,7 +171,10 @@ The idea behind these embeddings is simple: two subreddits are close if they sha
 Each subreddit is represented by a 300-dimensional vector. To visualize this space, we need to reduce its dimensionality. We first apply PCA, keeping the 50 most informative components.
 
 You might wonder: why 50 components?
+
 ![Explained variance by PCA components](/assets/images/explained_variance_pca.png)
+
+
 The figure above shows how much variance is explained as we add PCA components. We observe that the curve rises quickly at first and then starts to flatten. Around 50 components, more than 90% of the total variance is already captured. This means that most of the meaningful differences between subreddits are still preserved, while the remaining components mostly capture noise or small details.
 
 We then apply t-SNE to project the data into two dimensions for visualization.
