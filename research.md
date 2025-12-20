@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Data Analysis Research
+title: Moderation lessons from reddit
 subtitle: Your revolutionary AI B2B SaaS Crypto Blockchain IoT YC-backed Silicon Valley Startup Idea
 permalink: /
 full-width: true
@@ -612,7 +612,10 @@ Since we now are a veteran of ADA's methodology, let's first take a look at how 
 
 Below are 4 time graphs with statistics over a moving window of 1 month, made by our very smart colleague. Sadly, he forgot to annotate these "trivial" graphs. Let's not panic and put on our detective hat to understand these:
 
-![community_metrics_over_time](/assets/images/community_metrics_over_time.png)
+[//]: # (![community_metrics_over_time]&#40;/assets/images/community_metrics_over_time.png&#41;)
+
+<iframe src="/assets/data/website_figures/windows.html"
+        style="width:100%; height:70vh; border:none;"></iframe>
 
 On the top left and top right graphs, we can see that the number of edges & nodes increases almost linearly, which is slightly surprising since reddit had an explosive growth in that timeframe, but it's a particularity of the way reddit has communities.
 
@@ -663,6 +666,7 @@ In our case, modularity above **0.6** indicates that Reddit is well-partitioned 
 
 
 Now, let's take a look at the proportion of positive posts vs negatives over time. Ah, our colleague made just the perfect graph! Let's take a closer look:
+
 ![a](/assets/images/positives_vs_negatives_time_dual_axis.png)
 
 Well that's not exactly good news... It seems that the number of positive interactions grows the same as the negatives. This means that the reddit way of moderating is keeping the status quo, not improving it.
@@ -672,6 +676,7 @@ BUT WAIT, let's not be too hasty, indeed we are now a seasoned ADA enthusiast. L
 Hmmmm, the timescale looks the same as the other graph, the labels make sense, but there aha! The scales are different! Our sneaky colleague put both numbers on 2 different axies, and indeed the proportional growth of the positive and negative interactions is about the same.
 
 But, let's plot them on the same scale:
+
 ![b](/assets/images/positives_vs_negatives_time_single_axis.png)
 
 Aha! The negative interactions pale in comparison to the positive ones, so actually this is excellent news! This means that taking a similar moderating approach to Reddit works on a large scale!
