@@ -175,7 +175,7 @@ You might wonder: why 50 components?
 ![Explained variance by PCA components](/assets/images/explained_variance_pca.png)
 
 
-The figure above shows how much variance is explained as we add PCA components. We observe that the curve rises quickly at first and then starts to flatten. Around 50 components, more than 90% of the total variance is already captured. This means that most of the meaningful differences between subreddits are still preserved, while the remaining components mostly capture noise or small details.
+The figure shows how the data becomes clearer as more components are added. At first, each new component adds a lot of information, but soon the gains start to slow down. We observe that the curve rises quickly at first and then starts to flatten. Around 50 components, more than 90% of the total variance is already captured. This means that most of the meaningful differences between subreddits are still preserved, while the remaining components mostly capture noise or small details.
 
 We then apply t-SNE to project the data into two dimensions for visualization.
 
