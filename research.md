@@ -236,6 +236,7 @@ Now that we have a map of the subreddit landscape, the next step is to group nea
 Here, a cluster simply refers to a group of subreddits that end up close to each other on the map and are expected to share similar themes or user behavior.
 
 To do this, we use the K-Means clustering algorithm. The main question is how many clusters we should look for. To guide this choice, we rely on the elbow method: we vary the number of clusters k and observe how cluster tightness improves. Beyond a certain point, adding more clusters only yields marginal gains. 
+
 ![Elbow method for optimal k](/assets/images/elbow_optimal_k.png)
 
 We pick this elbow point, which in our case corresponds to k = 20.
