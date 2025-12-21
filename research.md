@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Moderation lessons from reddit
-subtitle: How can you learn from Reddit to improve your revolutionary AI B2B SaaS Crypto Blockchain IoT YC-backed Silicon Valley Startup Idea?
+subtitle: How can you learn from Reddit to improve your revolutionary AI B2B SaaS Crypto Blockchain IoT YC-backed Silicon Valley Startup?
 permalink: /
 full-width: true
 mathjax: true
