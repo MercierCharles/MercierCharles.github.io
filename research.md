@@ -359,9 +359,26 @@ Exploring the map you might notice that we assigned a name/theme to each cluster
 
 </details>
 
-
-
 From this point on, we shift our analysis from individual subreddits to cluster-level behavior, where broader trends are easier to identify than when working with thousands of individual subreddits.
+
+### How clusters talk to each other
+
+Looking at our map of subreddit clusters, an idea popped into our mind: is there a way to visualize how these clusters "talk" to each other? 
+
+To make this possible, we first reconstruct the text of Reddit posts. The original dataset does not store raw text directly, but it provides tokenized versions of post titles and bodies. Using the accompanying vocabulary, we can rebuild an approximate version of each post’s original wording.
+
+Once we have text back, we can select a typical message for each direction of interaction.
+
+Here’s the idea:
+- Each cross-community interaction comes with a compact linguistic fingerprint: sentiment, emotion, style, and theme (the so-called `PROPERTIES` vector).
+- For every pair of clusters (and for each direction), we look at all the posts exchanged between them.
+- We then pick the post whose linguistic profile is the closest to the average of that group.
+
+In other words, the message you see when hovering over an edge of the below plot is not the loudest or the most extreme, it’s the one that represents how these two communities usually talk to each other, based on their linguistic features.
+
+This is what allows the graph to reveal asymmetries: the tone from cluster A to B can be very different from the tone in the opposite direction, even when the same communities are involved.
+
+Take a moment to explore the graph below. Hover over the edges to read the typical messages exchanged between clusters. Some posts are friendly, others... less so.
 
 <iframe 
     src="/assets/data/website_figures/clusters_interaction_network.html"
