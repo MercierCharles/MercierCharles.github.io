@@ -38,11 +38,11 @@ To answer these questions, you dig into crosspost data from Reddit one of the mo
 
 ## 0. *The reddit dataset*
 
-The first, and possibly most important aspect of our study is the data. For this, we're using the Reddit Hyperlink Network dataset[1].
+The first, and possibly most important aspect of our study is the data. For this, we're using the Reddit Hyperlink Network dataset[1] from the Stanford SNAP collection.
 
-This dataset contains a list of crossposts in reddit from Jan 2014 to April 2017. Crossposts are posts that begin in one "subreddit", or community, and are shared to another subreddit. So effecitvely, this dataset acts as a sort of graph, representing how communities interact, negativety is spread, and information is shared.
+It models interactions between Reddit communities at the subreddit level. In this dataset, each node represents a subreddit, and each directed edge corresponds to a post in one subreddit that contains a hyperlink to another subreddit. Edges are timestamped and annotated with a sentiment label indicating whether the reference is neutral/positive or negative toward the target community. Covering Reddit activity from 2014 to 2017, this dataset provides a large-scale, structured view of how communities interact.
 
-Each crosspost comes with a compact 86-dimensional `PROPERTIES` vector that summarizes the text. It includes VADER sentiment scores (positive/negative/compound, tuned for social media), LIWC category counts (anger, anxiety, social, work, etc.), and basic structural signals like word count and capitalization. We use these features to compare how different communities express negativity in both tone and style.
+Each edge comes with a compact 86-dimensional `PROPERTIES` vector that summarizes the text. It includes VADER sentiment scores (positive/negative/compound, tuned for social media), LIWC category counts (anger, anxiety, social, work, etc.), and basic structural signals like word count and capitalization. We use these features to compare how different communities express negativity in both tone and style.
 
 In addition, we used one other dataset, the Reddit User and Subreddit Embeddings[2]. This gives us "embeddings" for users and subreddits. In the case of users, these embeddings capture user activity. And in the case of subreddits, these embeddings act as a sort of overview of how the users in each subreddit behaves. While we will not go deep into embeddings, they essentially allow us to compare how similar two users or subreddits are. If two users have similar embeddings, they likely act in similar ways and visit similar subreddits.
 
@@ -61,7 +61,7 @@ We begin with a global picture of tone across posts.
 
 Surprisingly, we notice something that is rather encouraging:
 
-**Negativey is the exception, not the norm**
+**Negativity is the exception, not the norm**
 
 The majority of posts are either positive or neutral (90.3%), and only 9.7% are negative.
 
@@ -381,7 +381,7 @@ Two details matter when reading this graph:
 
 This is not just theory: the largest bridge in the graph (**Memes ↔ Personal Advice**) is *mixed*—$$\text{Memes} \to \text{Advice}$$ skews negative, while $$\text{Advice} \to \text{Memes}$$ is strongly positive. The practical takeaway is that moderation can be **directional**: add friction only on the hostile direction instead of “blocking” an entire pair of communities and losing the beneficial cross-community flow.
 
-A second pattern is that the harshest edges are often **one-way**. In the backbone shown here, some of the reddest, highest-volume corridors don’t have a meaningful arrow back (e.g., **Skepticism/Bad‑X Critiques → Memes**, **Politics/Ideologies → News**, **Reddit Meta/Drama → Personal Advice**). Structurally, that’s less like “two sides arguing” and more like *targeting*: one cluster repeatedly exporting negativity into another. For moderation, this is actionable: protect likely *targets* (rate limits, stricter review of inbound crossposts) while still allowing healthier, pro-social bridges (e.g., **Cities/Careers → Personal Advice**) to keep working.
+A second pattern is that the harshest edges are often **one-way**. In the backbone shown here, some of the reddest, highest-volume corridors don’t have a meaningful arrow back (e.g., **Skepticism/Bad‑X Critiques → Memes**, **Politics/Ideologies → News**, **Reddit Meta/Drama → Personal Advice**). Structurally, that’s less like “two sides arguing” and more like *targeting*: one cluster repeatedly exporting negativity into another. For moderation, this is actionable: protect likely *targets* (rate limits, stricter review of inbound posts) while still allowing healthier, pro-social bridges (e.g., **Cities/Careers → Personal Advice**) to keep working.
 
 From this, we identify the top five conflict-heavy cluster pairs the types of communities that most often clash:
 
@@ -408,7 +408,7 @@ In effect, this serves to limit cross-cluster exposure for pairs that produce co
 
 We know that constructive disagreement is healthy. It avoids the creation of these so called echo chambers. On the other hand, toxic arguments are **not** healthy.  
 
-Research[1] suggests that even mildly negative crossposts can produce mini-echo chambers in the comment section. So unless we encourage the right type of cross community interactions, there's a strong chance we're only reinforcing the creation of these mini-echo chambers.
+Research[1] suggests that even mildly negative hyperlinks can produce mini-echo chambers in the comment section. So unless we encourage the right type of cross community interactions, there's a strong chance we're only reinforcing the creation of these mini-echo chambers.
 
 Lucky for us, negativity is not monolithic. We have several different types of negative comments such as:
 
@@ -538,7 +538,7 @@ We also see that some large, high-traffic clusters (e.g., **Memes and Entertainm
 
 What does this tell us in terms of our new app?
 
-When adjusting our algorithm we want to ensure that users active in clusters such as 12 and 2 tend to see other communities more often since they are more likely to exhibit negativey in a healthier way.
+When adjusting our algorithm we want to ensure that users active in clusters such as 12 and 2 tend to see other communities more often since they are more likely to exhibit negativity in a healthier way.
 
 On the other hand, users from Clusters 7 and 1 are more likely to create comments that are angrier and more hostile. So like we mentioned in the previous section, it would be useful to prevent users from these communities from being shown posts from clusters they are likely to interact negatively with.
 
@@ -720,7 +720,7 @@ If the toxic **Politics, Ideologies, and Conspiracies (Cluster 6)** was isolated
 
 We found that mid-sized clusters specifically **Reddit Meta and Drama (Cluster 1)** often act as "Vectors". They do not originate the hate, but they import memes and language from the Kill Zone and sanitize them for the mainstream.
 
-**The Strategy:** To stop the spread, we don't just police the source (Red nodes) or protect the victims (Green nodes). **We cut the bridges.** By strictly moderating crossposts passing through "Vector" communities, we break the chain of transmission ($R_0$) before it reaches the healthy viral clusters.
+**The Strategy:** To stop the spread, we don't just police the source (Red nodes) or protect the victims (Green nodes). We do it by strictly moderating posts passing through "Vector" communities, we break the chain of transmission ($R_0$) before it reaches the healthy viral clusters.
 
 ## 8. Some good news: metrics over time
 
@@ -815,13 +815,7 @@ We can see that most communities are in the lower half, and that there are a few
 
 ## 9. Final Lessons
 
-Your analysis reveals three major insights for your hypothetical startup:
-
-Negativity is rare but highly concentrate: focused moderation can have disproportionate impact.
-
-*A small core of communities drives most conflicts*: Community-level tools (not just individual-level) matter.
-
-*Not all negativity is harmful:* Emotional and stylistic features help distinguish critique from toxicity. As a result, we should focus on communities that frequency display these negative characteristics
+Our analysis demonstrates that effective moderation is less about eliminating all negativity than about understanding how it emerges and where it concentrates. The community structure shows that harmful behavior is not evenly distributed, making targeted, community-level interventions more effective than uniform enforcement. These insights suggest that scalable moderation should combine network analysis, localized policies, and graduated enforcement mechanisms. Platforms that align moderation strategies with their underlying social dynamics can reduce toxicity without undermining open discussion.
 
 ## References
 
