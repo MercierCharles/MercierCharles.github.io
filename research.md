@@ -170,11 +170,32 @@ The idea behind these embeddings is simple: two subreddits are close if they sha
 
 Each subreddit is represented by a 300-dimensional vector. To visualize this space, we need to reduce its dimensionality. We first apply PCA, keeping the 50 most informative components.
 
+<details>
+<summary> PCA? What's that?</summary>
+
+Often times, real world data is incredibly complex. Rather than have simply one or two features, they can have thousands or even tens of thousands. But the issue with this, is that the more features data has, the harder it is for humans the filter through and understand this data. 
+
+<b>So, what's the solution?</b> 
+
+PCA! PCA, or Principal Component Analysis, is a way to take data that consists of many features, and condense it down into any number of features that you wish to. Of course, we may lose some information in the process. But this tradeoff is often times worth it since it means we no longer have to sift through thousands of features. Instead, we're typically left with only the most relevant ones. For the rest of this story, 'components', are the features that PCA extracts from our datasets.
+
+</details>
+
 You might wonder: why 50 components?
+
 ![Explained variance by PCA components](/assets/images/explained_variance_pca.png)
+
 The figure above shows how much variance is explained as we add PCA components. We observe that the curve rises quickly at first and then starts to flatten. Around 50 components, more than 90% of the total variance is already captured. This means that most of the meaningful differences between subreddits are still preserved, while the remaining components mostly capture noise or small details.
 
 We then apply t-SNE to project the data into two dimensions for visualization.
+
+
+<details>
+<summary> t-SNE?</summary>
+
+t-SNE is another algorithm used to make complex data easier to visualize. It’s a bit more complicated than PCA, but the key idea is simple: t-SNE arranges data points in a way that keeps similar points close together. The result is a graph where natural groupings often appear clearly, making patterns easier for humans to see.
+
+</details>
 
 Applying PCA before t-SNE turns out to be crucial. Without it, the visualization is noisy and there are no clear clusters taking shape. With PCA, the structure becomes much clearer and coherent clusters start to appear, which is important for the clustering step that follows.
 
