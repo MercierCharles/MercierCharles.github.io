@@ -13,7 +13,7 @@ ext-js:
 
 <div class="research-outline" markdown="1">
 
-You’ve just launched your startup. The idea is simple: create an online platform where college students all around Switzerland can connect, share ideas, and build communities. Early on, everything looks promising— users are joining, discussions are active, and growth feels organic.
+You’ve just launched your startup. The idea is simple: create an online platform where college students all around Switzerland can connect, share ideas, and build communities. Early on, everything looks promising users are joining, discussions are active, and growth feels organic.
 
 Then things start to break down.
 
@@ -44,7 +44,7 @@ This dataset contains a list of crossposts in reddit from Jan 2014 to April 2017
 
 Each crosspost comes with a compact 86-dimensional `PROPERTIES` vector that summarizes the text. It includes VADER sentiment scores (positive/negative/compound, tuned for social media), LIWC category counts (anger, anxiety, social, work, etc.), and basic structural signals like word count and capitalization. We use these features to compare how different communities express negativity in both tone and style.
 
-In addition, we use one other dataset, the Reddit User and Subreddit Embeddings[2]. This gives us "embeddings" for users and subreddits. In the case of users, these embeddings capture user activity. And in the case of subreddits, these embeddings act as a sort of overview of how the users in each subreddit behaves. While we will not go deep into embeddings, they essentially allow us to compare how similar two users or subreddits are. If two users have similar embeddings, they likely act in similar ways and visit similar subreddits.
+In addition, we used one other dataset, the Reddit User and Subreddit Embeddings[2]. This gives us "embeddings" for users and subreddits. In the case of users, these embeddings capture user activity. And in the case of subreddits, these embeddings act as a sort of overview of how the users in each subreddit behaves. While we will not go deep into embeddings, they essentially allow us to compare how similar two users or subreddits are. If two users have similar embeddings, they likely act in similar ways and visit similar subreddits.
 
 
 
@@ -170,31 +170,11 @@ The idea behind these embeddings is simple: two subreddits are close if they sha
 
 Each subreddit is represented by a 300-dimensional vector. To visualize this space, we need to reduce its dimensionality. We first apply PCA, keeping the 50 most informative components.
 
-
-<details class="math-details">
-<summary>PCA? What's that?</summary>
-In the real world, data is rarely simple. Instead of being described by just one or two qualities, it often comes with thousands, sometimes even tens of thousands, of overlapping details. The problem is that as this list grows longer, the data becomes harder for people to make sense of. Important patterns get buried, and understanding what really matters turns into a challenge.
-
-So what can we do about this?
-
-This is where PCA comes in. PCA, short for Principal Component Analysis, is a way of simplifying complex data without losing its overall shape. It takes all those tiny details and folds them into a smaller set of new features that still reflect the big picture. Some information is inevitably left behind, but what remains is usually what matters most — the structure that helps us compare, interpret, and understand the data.
-
-Throughout the rest of this story, when we talk about components, we’re referring to these new features that PCA creates: compact summaries that capture the most important patterns in the data.
-</details>
-
 You might wonder: why 50 components?
-
 ![Explained variance by PCA components](/assets/images/explained_variance_pca.png)
-
-
-The figure shows how the data becomes clearer as more components are added. At first, each new component adds a lot of information, but soon the gains start to slow down. We observe that the curve rises quickly at first and then starts to flatten. Around 50 components, more than 90% of the total variance is already captured. This means that most of the meaningful differences between subreddits are still preserved, while the remaining components mostly capture noise or small details.
+The figure above shows how much variance is explained as we add PCA components. We observe that the curve rises quickly at first and then starts to flatten. Around 50 components, more than 90% of the total variance is already captured. This means that most of the meaningful differences between subreddits are still preserved, while the remaining components mostly capture noise or small details.
 
 We then apply t-SNE to project the data into two dimensions for visualization.
-
-<details class="math-details">
-<summary>t-SNE?</summary>
-t-SNE is another algorithm used to make complex data easier to analyze, similar to PCA. It’s a bit more complicated than PCA, but the key idea is simple: t-SNE arranges data points in a way that keeps similar points close together. The result is a graph where natural groupings often appear clearly, making patterns easier for humans to see.
-</details>
 
 Applying PCA before t-SNE turns out to be crucial. Without it, the visualization is noisy and there are no clear clusters taking shape. With PCA, the structure becomes much clearer and coherent clusters start to appear, which is important for the clustering step that follows.
 
@@ -212,11 +192,15 @@ Putting everything together, we arrive at the map below:
 
 <details class="math-details">
 <summary>What is a VADER score?</summary>
+
+<div markdown="1">
 VADER is a sentiment analysis tool which allows data scientists to attach sentimate scores to pieces of text. The scores generated by VADER range from -1 to 1 and can be interprated as follows:
 
 - **VADER > 0.05**: Positive Sentiment
 - **VADER < -0.05**: Negative Sentiment
 - **0.05 > VADER > -0.05**: Neutral Sentiment
+</div>
+
 </details>
 
 It looks pretty neat! Take a moment to explore it and you’ll start seeing patterns emerge. Look at the "island" at the very top: "oaklandraiders", "nygiants", "anaheimducks". See the common theme? Sports communities are clustered up there.
@@ -359,26 +343,9 @@ Exploring the map you might notice that we assigned a name/theme to each cluster
 
 </details>
 
+
+
 From this point on, we shift our analysis from individual subreddits to cluster-level behavior, where broader trends are easier to identify than when working with thousands of individual subreddits.
-
-### How clusters talk to each other
-
-Looking at our map of subreddit clusters, an idea popped into our mind: is there a way to visualize how these clusters "talk" to each other? 
-
-To make this possible, we first reconstruct the text of Reddit posts. The original dataset does not store raw text directly, but it provides tokenized versions of post titles and bodies. Using the accompanying vocabulary, we can rebuild an approximate version of each post’s original wording.
-
-Once we have text back, we can select a typical message for each direction of interaction.
-
-Here’s the idea:
-- Each cross-community interaction comes with a compact linguistic fingerprint: sentiment, emotion, style, and theme (the so-called `PROPERTIES` vector).
-- For every pair of clusters (and for each direction), we look at all the posts exchanged between them.
-- We then pick the post whose linguistic profile is the closest to the average of that group.
-
-In other words, the message you see when hovering over an edge of the below plot is not the loudest or the most extreme, it’s the one that represents how these two communities usually talk to each other, based on their linguistic features.
-
-This is what allows the graph to reveal asymmetries: the tone from cluster A to B can be very different from the tone in the opposite direction, even when the same communities are involved.
-
-Take a moment to explore the graph below. Hover over the edges to read the typical messages exchanged between clusters. Some posts are friendly, others... less so.
 
 <iframe 
     src="/assets/data/website_figures/clusters_interaction_network.html"
@@ -387,7 +354,7 @@ Take a moment to explore the graph below. Hover over the edges to read the typic
 
 Two details matter when reading this graph:
 
-- **Direction**: an arrow $$A \to B$$ means the post originated in cluster $$A$$ and was crossposted into cluster $$B$$.
+- **Direction**: a link $$A \to B$$ means the post originated in cluster $$A$$ and was targeted to $$B$$.
 - **Averages can hide asymmetry**: edge width is the *total* volume across both directions, and edge color is a volume-weighted average sentiment. A thick edge can still be mostly one-way, and a “neutral-looking” edge can mix a hostile direction with a friendly one.
 
 This is not just theory: the largest bridge in the graph (**Memes ↔ Personal Advice**) is *mixed*—$$\text{Memes} \to \text{Advice}$$ skews negative, while $$\text{Advice} \to \text{Memes}$$ is strongly positive. The practical takeaway is that moderation can be **directional**: add friction only on the hostile direction instead of “blocking” an entire pair of communities and losing the beneficial cross-community flow.
@@ -406,7 +373,7 @@ From this, we identify the top five conflict-heavy cluster pairs the types of co
 
 5. (Memes and Entertainment ⟺ Skepticism and Bad-X Critiques)
 
-If you only remember one thing from this network, it’s that conflict isn’t evenly “smeared” across the platform: it tends to travel along a handful of high-traffic bridges. In our k-means cluster interaction graph, **Personal Advice and Mental Health** and **Memes and Entertainment** act as major *connectors* between otherwise separate regions of Reddit (high betweenness), which makes them disproportionately important for the *spread* of negativity even when they are not the original source. Meanwhile, the most toxic edges are extremely concentrated (e.g., **Skepticism/Bad‑X Critiques → Memes** and **Politics/Ideologies → News**), suggesting a practical moderation strategy for a startup: don’t try to “fix the whole network”monitor a small set of bridge communities and the top hostile cross-cluster links, and intervene early when those specific pathways spike.
+We notice that conflict isn’t evenly “smeared” across the platform: it tends to travel along a handful of high-traffic bridges. In our k-means cluster interaction graph, **Personal Advice and Mental Health** and **Memes and Entertainment** act as major connectors between otherwise separate regions of Reddit (high betweenness), which makes them disproportionately important for the spread of negativity even when they are not the original source. Meanwhile, the most toxic edges are extremely concentrated (e.g., **Skepticism/Bad‑X Critiques → Memes** and **Politics/Ideologies → News**), suggesting a practical moderation strategy for a startup: don’t try to “fix the whole network”monitor a small set of bridge communities and the top hostile cross-cluster links, and intervene early when those specific pathways spike.
 
 Now that we have a way to identify which clusters are most likely to come into conflict, how can we act on it? One approach is to adapt our recommendation algorithm. In particular, we can reduce the visibility of posts from clusters that a user’s home cluster tends to react negatively to, ensuring that users are less frequently exposed to communities with which they historically clash.
 
@@ -431,7 +398,7 @@ Lucky for us, negativity is not monolithic. We have several different types of n
 
 - Coordinated attacks
 
-In fact, we can even see examples of the standard type of cross post comments between communities in the "Cluster Interaction Network" above. It's quite obvious from this graph that just because posts between two pairs of communities are negative, that doesn't mean they share the same emotions and sentiment. Using linguistic profiling (sentiment models, LIWC-style categories), we can look at the average textual features in each cluster's negative posts. Our aim is to identify which clusters express negativety as critical, constructive arguments, and which clusters express it as hostility and personal attacks.
+Using linguistic profiling (sentiment models, LIWC-style categories), we can look at the average textual features in each cluster's negative posts. Our aim is to identify which clusters express negativety as critical, constructive arguments, and which clusters express it as hostility and personal attacks.
 
 <details >
 <summary>Global linguistic shift (negative vs non-negative)</summary>
@@ -650,7 +617,7 @@ The x-axis uses a log scale for volume, while the y-axis shows the raw risk rati
     style="width:120%; height:60vh; border:none;">
 </iframe>
 
-The graph above confirms that toxicity follows a strict Pareto Principle (80/20 rule). A tiny fraction of communities creates the vast majority of our problems. By plotting our 20 communities on a log-scaled volume axis against risk, distinct strategies emerge for different quadrants:
+Graph 9 confirms that toxicity follows a strict Pareto Principle (80/20 rule). A tiny fraction of communities creates the vast majority of our problems. By plotting our 20 communities on a log-scaled volume axis against risk, distinct strategies emerge for different quadrants:
 
 * **The "Kill Zone" (Top Right)**
     * **Characteristics:** High Volume, High Toxicity.
@@ -671,7 +638,7 @@ The graph above confirms that toxicity follows a strict Pareto Principle (80/20 
 
 One thing the Moderation Matrix doesn’t show is how conflict spreads. A cluster can look fairly “safe” on average, but still be a busy crossroads where many different communities meet. If a toxic cluster can reach the rest of the platform through these crossroads, negativity travels farther and faster.
 
-So in practice, we won’t just moderate the “worst” clusters. We'll also watch the bridge clusters and the few specific cross-cluster links that carry most of the hostile traffic. Adding small frictions on those pathways (rate limits, stricter review, reduced amplification) can slow down spillover without heavy-handed moderation everywhere.
+So in practice, we won’t just moderate the “worst” clusters. We'll Also watch the bridge clusters and the few specific cross-cluster links that carry most of the hostile traffic. Adding small frictions on those pathways (rate limits, stricter review, reduced amplification) can slow down spillover without heavy-handed moderation everywhere.
 
 ---
 
