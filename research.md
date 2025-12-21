@@ -400,13 +400,15 @@ Lucky for us, negativity is not monolithic. We have several different types of n
 
 Using linguistic profiling (sentiment models, LIWC-style categories), we can look at the average textual features in each cluster's negative posts. Our aim is to identify which clusters express negativety as critical, constructive arguments, and which clusters express it as hostility and personal attacks.
 
-<details >
-<summary>Global linguistic shift (negative vs non-negative)</summary>
+<details class="math-details">
+  <summary>Global linguistic shift (negative vs non-negative)</summary>
 
+  <div markdown="1">
 <iframe 
     src="/assets/data/website_figures/emotional_profile_differences.html"
     style="width:100%; height:60vh; border:none;">
 </iframe>
+  </div>
 
 </details>
 
